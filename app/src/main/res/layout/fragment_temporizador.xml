@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".temporizador"
+    android:translationY="-45dp">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        android:translationY="28dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:translationY="100dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="100dp"
+                    android:gravity="center|center_vertical"
+                    android:text="@string/tiempo"
+                    android:layout_marginRight="100dp" />
+
+                <Switch
+                    android:id="@+id/tiemposwi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|center_vertical"
+                    android:layout_marginLeft="100dp"
+                    android:layout_marginStart="100dp"/>
+
+            </RelativeLayout>
+
+            <!--Relay numero 1-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15sp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="100sp"
+                    android:layout_marginEnd="100sp"
+                    android:gravity="center_vertical"
+                    android:text="@string/formatohora"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    tools:ignore="RelativeOverlap">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/inR"
+                        android:textSize="15sp"
+                        android:layout_marginTop="15sp"/>
+
+                    <TextView
+                        android:id="@+id/on"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="100sp"
+                        android:layout_marginStart="100sp"
+                        android:gravity="center_vertical"
+                        android:text="0"/>
+
+
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/onbtn"
+                    android:layout_width="60sp"
+                    android:layout_height="60sp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/on"
+                    android:contentDescription="@string/inR"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    tools:ignore="RelativeOverlap">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/fiR"
+                        android:layout_marginTop="15sp"
+                        android:textSize="15sp"/>
+
+                    <TextView
+                        android:id="@+id/off"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="100sp"
+                        android:layout_marginStart="100sp"
+                        android:gravity="center_vertical"
+                        android:text="0"/>
+
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/offbtn"
+                    android:layout_width="60dp"
+                    android:layout_height="60sp"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/off"
+                    android:contentDescription="@string/fiR"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:orientation="vertical"
+                    tools:ignore="RelativeOverlap">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/onR"
+                        android:textSize="15sp"
+                        android:layout_marginTop="15sp"/>
+
+                    <TextView
+                        android:id="@+id/horaini"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="100sp"
+                        android:layout_marginStart="100sp"
+                        android:gravity="center_vertical"
+                        android:text="0"/>
+
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/horainibtn"
+                    android:layout_width="60sp"
+                    android:layout_height="60sp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/start"
+                    android:contentDescription="@string/onR"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="150dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    tools:ignore="RelativeOverlap">
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/offR"
+                        android:textSize="15sp"
+                        android:layout_marginTop="15sp"/>
+
+                    <TextView
+                        android:id="@+id/horafin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="100sp"
+                        android:layout_marginLeft="100sp"
+                        android:gravity="center_vertical"
+                        android:text="0"/>
+
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/horafinbtn"
+                    android:layout_width="60sp"
+                    android:layout_height="60sp"
+                    android:src="@drawable/end"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="@string/offR"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:translationY="45dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@color/colorPrimary">
+
+        <ToggleButton
+            android:id="@+id/I"
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:layout_marginLeft="5sp"
+            android:layout_marginRight="5sp"
+            android:background="@drawable/togglerelay"
+            android:textColor="@color/relay"
+            android:textOff="@string/relayBtn1"
+            android:textOn="@string/relayBtn1" />
+
+        <ToggleButton
+            android:id="@+id/II"
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:layout_marginLeft="5sp"
+            android:layout_marginRight="5sp"
+            android:background="@drawable/togglerelay"
+            android:textOn="@string/relayBtn2"
+            android:textOff="@string/relayBtn2"
+            android:textColor="@color/relay"/>
+
+        <ToggleButton
+            android:id="@+id/III"
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:layout_marginLeft="5sp"
+            android:layout_marginRight="5sp"
+            android:background="@drawable/togglerelay"
+            android:textOn="@string/relayBtn3"
+            android:textOff="@string/relayBtn3"
+            android:textColor="@color/relay"/>
+
+        <ToggleButton
+            android:id="@+id/IV"
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:layout_marginLeft="5sp"
+            android:layout_marginRight="5sp"
+            android:background="@drawable/togglerelay"
+            android:textOn="@string/relayBtn4"
+            android:textOff="@string/relayBtn4"
+            android:textColor="@color/relay"/>
+
+    </LinearLayout>
+
+        <TextView
+            android:id="@+id/relayName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="@color/textTittle"
+            android:background="@color/colorAccent"
+            android:textAlignment="center"/>
+
+    </LinearLayout>
+
+</FrameLayout>

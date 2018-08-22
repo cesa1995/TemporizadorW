@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".temperatura"
+    android:translationY="-45dp">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        android:translationY="28dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:translationY="100dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|center_vertical"
+                    android:text="@string/temperatura" />
+
+                <Switch
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="100dp"
+                    android:gravity="center|center_vertical"
+                    android:layout_marginLeft="100dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginStart="50dp"
+                    android:text="0"
+                    android:textSize="20sp"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccent"/>
+
+            </RelativeLayout>
+
+            <!--Relay numero 1-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tempinicial"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/temperaturaini"
+                    android:textSize="15sp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginTop="10sp"/>
+
+                <ImageButton
+                    android:id="@+id/tempinicialbtn"
+                    android:layout_width="60sp"
+                    android:layout_height="50sp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/temperaturaon"
+                    android:contentDescription="@string/temperaturaini"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tempfinal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/temperaturafin"
+                    android:textSize="15sp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginTop="10sp"/>
+
+                <ImageButton
+                    android:id="@+id/tempfinalbtn"
+                    android:layout_width="60dp"
+                    android:layout_height="50sp"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/temperaturaoff"
+                    android:contentDescription="@string/temperaturafin"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/ontime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/inR"
+                    android:textSize="15sp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginTop="10sp"/>
+
+                <ImageButton
+                    android:id="@+id/ontimebtn"
+                    android:layout_width="60sp"
+                    android:layout_height="50sp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/on"
+                    android:contentDescription="@string/inR"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="150dp">
+
+                <TextView
+                    android:id="@+id/oftime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fiR"
+                    android:textSize="15sp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginTop="10sp"/>
+
+                <ImageButton
+                    android:id="@+id/oftimebtn"
+                    android:layout_width="60sp"
+                    android:layout_height="50sp"
+                    android:src="@drawable/off"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="@string/fiR"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:translationY="45dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@color/colorPrimary">
+
+        <ToggleButton
+            android:id="@+id/I"
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:layout_marginLeft="5sp"
+            android:layout_marginRight="5sp"
+            android:background="@drawable/togglerelay"
+            android:textColor="@color/relay"
+            android:textOff="@string/relayBtn1"
+            android:textOn="@string/relayBtn1" />
+
+        <ToggleButton
+            android:id="@+id/II"
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:layout_marginLeft="5sp"
+            android:layout_marginRight="5sp"
+            android:background="@drawable/togglerelay"
+            android:textOn="@string/relayBtn2"
+            android:textOff="@string/relayBtn2"
+            android:textColor="@color/relay"/>
+
+        <ToggleButton
+            android:id="@+id/III"
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:layout_marginLeft="5sp"
+            android:layout_marginRight="5sp"
+            android:background="@drawable/togglerelay"
+            android:textOn="@string/relayBtn3"
+            android:textOff="@string/relayBtn3"
+            android:textColor="@color/relay"/>
+
+        <ToggleButton
+            android:id="@+id/IV"
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:layout_marginLeft="5sp"
+            android:layout_marginRight="5sp"
+            android:background="@drawable/togglerelay"
+            android:textOn="@string/relayBtn4"
+            android:textOff="@string/relayBtn4"
+            android:textColor="@color/relay"/>
+
+    </LinearLayout>
+
+        <TextView
+            android:id="@+id/relayName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="@color/textTittle"
+            android:background="@color/colorAccent"
+            android:textAlignment="center"/>
+
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/saveBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:layout_margin="16dp"
+        app:backgroundTint="@color/colorAccent"
+        app:srcCompat="@drawable/save"/>
+
+</FrameLayout>
