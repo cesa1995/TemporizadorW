@@ -1,19 +1,9 @@
 <resources>
-    <string name="app_name">Temporizador</string>
-    <string name="tab_text_1">Tiempo</string>
-    <string name="tab_text_2">Humedad</string>
-    <string name="tab_text_3">Temperatura</string>
-    <string name="relayBtn1">P 1</string>
-    <string name="relayBtn2">P 2</string>
-    <string name="relayBtn3">P 3</string>
-    <string name="relayBtn4">P 4</string>
-    <string name="ingresarcontactohum">Ingresar Contacot</string>
+    <string name="app_name">Tempo Work</string>
     <string name="inR">Tiempo Enc(ON)</string>
     <string name="fiR">Tiempo Apa(OFF)</string>
     <string name="onR">Hora de Inicio</string>
     <string name="offR">Hora de Fin</string>
-    <string name="save">Guardar</string>
-    <string name="Tittle">Informacion del dispositivo</string>
     <string name="humedadini">Humedad Inicial</string>
     <string name="humedadfin">Humedad Final</string>
     <string name="temperaturaini">Temperatura Inicial</string>
@@ -30,5 +20,10 @@
     <string name="title_activity_configuracion">configuracion</string>
     <string name="puntos"> : </string>
     <string name="formatohora">HH : MM : SS</string>
+    <string name="none"> </string>
+    <string name="device">DISPOSITIVOS</string>
+    <string name="devicename">Ingrese el nombre del dispositivo</string>
+    <string name="nombre">NOMBRE</string>
+    <string name="color">COLOR</string>
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

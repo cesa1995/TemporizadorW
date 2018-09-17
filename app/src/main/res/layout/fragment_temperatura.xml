@@ -4,23 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".temperatura"
-    android:translationY="-45dp">
+    tools:context=".tabs.temperatura">
 
     <!-- TODO: Update blank fragment layout -->
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="vertical"
-        android:translationY="28dp">
-
-        <LinearLayout
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center"
-            android:translationY="100dp">
+            android:gravity="center">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -168,79 +160,6 @@
             </RelativeLayout>
 
         </LinearLayout>
-
-
-    </ScrollView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:translationY="45dp">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:background="@color/colorPrimary">
-
-        <ToggleButton
-            android:id="@+id/I"
-            android:layout_width="50sp"
-            android:layout_height="50sp"
-            android:layout_marginLeft="5sp"
-            android:layout_marginRight="5sp"
-            android:background="@drawable/togglerelay"
-            android:textColor="@color/relay"
-            android:textOff="@string/relayBtn1"
-            android:textOn="@string/relayBtn1" />
-
-        <ToggleButton
-            android:id="@+id/II"
-            android:layout_width="50sp"
-            android:layout_height="50sp"
-            android:layout_marginLeft="5sp"
-            android:layout_marginRight="5sp"
-            android:background="@drawable/togglerelay"
-            android:textOn="@string/relayBtn2"
-            android:textOff="@string/relayBtn2"
-            android:textColor="@color/relay"/>
-
-        <ToggleButton
-            android:id="@+id/III"
-            android:layout_width="50sp"
-            android:layout_height="50sp"
-            android:layout_marginLeft="5sp"
-            android:layout_marginRight="5sp"
-            android:background="@drawable/togglerelay"
-            android:textOn="@string/relayBtn3"
-            android:textOff="@string/relayBtn3"
-            android:textColor="@color/relay"/>
-
-        <ToggleButton
-            android:id="@+id/IV"
-            android:layout_width="50sp"
-            android:layout_height="50sp"
-            android:layout_marginLeft="5sp"
-            android:layout_marginRight="5sp"
-            android:background="@drawable/togglerelay"
-            android:textOn="@string/relayBtn4"
-            android:textOff="@string/relayBtn4"
-            android:textColor="@color/relay"/>
-
-    </LinearLayout>
-
-        <TextView
-            android:id="@+id/relayName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:textColor="@color/textTittle"
-            android:background="@color/colorAccent"
-            android:textAlignment="center"/>
-
-    </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/saveBtn"

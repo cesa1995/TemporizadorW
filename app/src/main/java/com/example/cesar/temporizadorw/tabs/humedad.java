@@ -1,9 +1,6 @@
-package com.example.cesar.temporizadorw;
+package com.example.cesar.temporizadorw.tabs;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -14,16 +11,20 @@ import android.widget.ImageButton;
 import android.widget.NumberPicker;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.ToggleButton;
+import com.example.cesar.temporizadorw.comunication;
+
+import com.example.cesar.temporizadorw.R;
 
 public class humedad extends Fragment {
 
-    ToggleButton I,II,III,IV;
     TextView relayName,humedadvalue,huminicial,humfinal,ontime,oftime;
     FloatingActionButton saveBtn;
     Switch humedadswi;
     ImageButton huminicialbtn,humfinalbtn,ontimebtn,oftimebtn;
     NumberPicker hora, minutos, segundos;
+    int relay;
+    comunication mCallback;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,7 +37,7 @@ public class humedad extends Fragment {
 
     private void initUI(View v){
         humedadswi = v.findViewById(R.id.humedadswi);
-        humedadvalue = v.findViewById(R.id.humedad);
+        humedadvalue = v.findViewById(R.id.humedadActual);
         huminicial = v.findViewById(R.id.huminicial);
         humfinal = v.findViewById(R.id.humfinal);
         ontime = v.findViewById(R.id.ontime);
@@ -47,12 +48,31 @@ public class humedad extends Fragment {
         oftimebtn = v.findViewById(R.id.oftimebtn);
         relayName = v.findViewById(R.id.relayName);
         saveBtn = v.findViewById(R.id.saveBtn);
-        I = v.findViewById(R.id.I);
-        II = v.findViewById(R.id.II);
-        III = v.findViewById(R.id.III);
-        IV = v.findViewById(R.id.IV);
+        relay = 0;
+
+        mCallback.sendata(1,relay);
 
 
+
+
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        // This makes sure that the container activity has implemented
+        // the callback interface. If not, it throws an exception
+        try {
+            mCallback = (comunication) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnHeadlineSelectedListener");
+        }
+    }
+
+    public void cambiarrelay(int dato){
+        relay = dato;
     }
 
 }

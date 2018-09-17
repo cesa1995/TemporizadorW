@@ -1,20 +1,24 @@
-package com.example.cesar.temporizadorw;
+package com.example.cesar.temporizadorw.tabs;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import com.example.cesar.temporizadorw.R;
+import com.example.cesar.temporizadorw.conexion;
+import com.example.cesar.temporizadorw.configuracion;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,7 +29,7 @@ import java.util.HashMap;
 
 import static android.content.ContentValues.TAG;
 
-public class configuracion extends AppCompatActivity{
+public class ajustes extends Fragment{
 
     TextView time, date;
     ImageButton timeb, dateb;
@@ -33,42 +37,51 @@ public class configuracion extends AppCompatActivity{
 
     HashMap<String, String> relaycon = new HashMap<>();
 
-    int horan;
-    int minutosn;
-    int segundosn;
-    String diaWeekn;
-    int dian;
-    int mesn;
-    int yearn;
-    String urlsave;
+    int horan, minutosn, segundosn, dian, mesn, yearn;
+    String diaWeekn, urlsave;
+    int hora, min, dia, mes, year, seg;
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View v = inflater.inflate(R.layout.fragment_ajustes, container, false);
+       initUI(v);
+       return v;
+    }
 
-        date = findViewById(R.id.et_mostrar_fecha_picker);
-        time = findViewById(R.id.et_mostrar_hora_picker);
-        timeb = findViewById(R.id.ib_obtener_hora);
-        dateb = findViewById(R.id.ib_obtener_fecha);
-        saveBtn = findViewById(R.id.saveBtn);
+
+    private void initUI(View v) {
+
+
+        date = v.findViewById(R.id.et_mostrar_fecha_picker);
+        time = v.findViewById(R.id.et_mostrar_hora_picker);
+        timeb = v.findViewById(R.id.ib_obtener_hora);
+        dateb = v.findViewById(R.id.ib_obtener_fecha);
+        saveBtn = v.findViewById(R.id.saveBtn);
+
+        Calendar c = Calendar.getInstance();
+        hora = c.get(Calendar.HOUR_OF_DAY);
+        min = c.get(Calendar.MINUTE);
+        seg = c.get(Calendar.SECOND);
+        dia = c.get(Calendar.DAY_OF_MONTH);
+        mes = c.get(Calendar.MONTH);
+        year = c.get(Calendar.YEAR);
 
         new Getcon().execute();
 
         timeb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calendar c = Calendar.getInstance();
-                int hora = c.get(Calendar.HOUR_OF_DAY);
-                int min = c.get(Calendar.MINUTE);
-
-                TimePickerDialog timePickerDialog = new TimePickerDialog(configuracion.this, new TimePickerDialog.OnTimeSetListener() {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(), new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         horan = hourOfDay;
                         minutosn = minute;
-                        time.setText(horan+":"+minutosn+":"+segundosn);
+                        time.setText(horan + ":" + minutosn + ":" + segundosn);
                     }
-                },hora,min,true);
+                }, hora, min, true);
                 timePickerDialog.show();
             }
         });
@@ -76,22 +89,26 @@ public class configuracion extends AppCompatActivity{
         dateb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calendar c = Calendar.getInstance();
-                int dia = c.get(Calendar.DAY_OF_MONTH);
-                int mes = c.get(Calendar.MONTH);
-                Log.e(TAG,"el mes es "+mes);
-                int year = c.get(Calendar.YEAR);
 
-                DatePickerDialog datePickerDialog = new DatePickerDialog(configuracion.this, new DatePickerDialog.OnDateSetListener() {
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         dian = dayOfMonth;
-                        mesn = month+1;
+                        mesn = month + 1;
                         yearn = year;
-                        date.setText(dian+"/"+mesn+"/"+yearn);
+                        date.setText(dian + "/" + mesn + "/" + yearn);
                     }
-                },year,mes,dia);
+                }, year, mes, dia);
                 datePickerDialog.show();
+            }
+        });
+
+        saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
             }
         });
 
@@ -180,10 +197,10 @@ public class configuracion extends AppCompatActivity{
                     }
                 } catch (final JSONException e) {
                     Log.e(TAG, "error parsing datos: " + e.getMessage());
-                    runOnUiThread(new Runnable() {
+                    getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(getApplicationContext(),
+                            Toast.makeText(getContext(),
                                     "error parsing datos: " + e.getMessage(),
                                     Toast.LENGTH_LONG).show();
                         }
@@ -193,10 +210,10 @@ public class configuracion extends AppCompatActivity{
 
             } else {
                 Log.e(TAG, "No se reciben datos");
-                runOnUiThread(new Runnable() {
+                getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(getApplicationContext(),
+                        Toast.makeText(getContext(),
                                 "no se reciben datos del servidor",
                                 Toast.LENGTH_LONG).show();
                     }
@@ -226,9 +243,9 @@ public class configuracion extends AppCompatActivity{
         @Override
         protected void onPostExecute(String resultado) {
             if (resultado != null){
-                Toast.makeText(getApplicationContext(), resultado,Toast.LENGTH_SHORT).show();;
+                Toast.makeText(getContext(), resultado,Toast.LENGTH_SHORT).show();;
             }else {
-                Toast.makeText(getApplicationContext(), "error de conexion", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "error de conexion", Toast.LENGTH_LONG).show();
             }
         }
     }

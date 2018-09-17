@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#198e7c</color>
+    <color name="colorPrimary">#ffff</color>
     <color name="colorPrimaryDark">#198e7c</color>
-    <color name="colorAccent">#8dc53b</color>
+    <color name="colorAccent">#9306b2</color>
     <color name="textTittle">#ffffff</color>
     <color name="togglel">#863434</color>
-    <color name="relay">#5e6657</color>
+    <color name="black">#000000</color>
     <color name="button">#c7f9e322</color>
+    <color name="line">#9dccc5</color>
+    <color name="verde">#90c645</color>
 </resources>

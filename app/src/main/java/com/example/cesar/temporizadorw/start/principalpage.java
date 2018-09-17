@@ -1,8 +1,10 @@
-package com.example.cesar.temporizadorw;
+package com.example.cesar.temporizadorw.start;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.cesar.temporizadorw.show;
 
 public class principalpage extends AppCompatActivity {
 
