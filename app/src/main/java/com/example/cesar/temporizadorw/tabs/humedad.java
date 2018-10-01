@@ -125,7 +125,7 @@ public class humedad extends Fragment {
         View d = inflater.inflate(R.layout.picker_hum_temp,null);
         builder.setView(d);
         builder.setTitle("Selecciones humedad:");
-        builder.setMessage("HH/MM/SS");
+        builder.setMessage("%");
 
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
@@ -537,8 +537,8 @@ public class humedad extends Fragment {
         if (relay==0 &&!relayListhum.isEmpty()){
             ONe = Integer.parseInt(relayListhum.get(0).get("humONhh"))+" "+getString(R.string.puntos)+" "+Integer.parseInt(relayListhum.get(0).get("humONmm"))+" "+getString(R.string.puntos)+" "+Integer.parseInt(relayListhum.get(0).get("humONss"));
             OFFe = Integer.parseInt(relayListhum.get(0).get("humOFFhh"))+" "+getString(R.string.puntos)+" "+Integer.parseInt(relayListhum.get(0).get("humOFFmm"))+" "+getString(R.string.puntos)+" "+Integer.parseInt(relayListhum.get(0).get("humOFFss"));
-            HINIe = relayListhum.get(0).get("humINI");
-            HFINe = relayListhum.get(0).get("humFIN");
+            HINIe = relayListhum.get(0).get("humINI")+getString(R.string.porcentaje);
+            HFINe = relayListhum.get(0).get("humFIN")+getString(R.string.porcentaje);
             ontime.setText(ONe);
             oftime.setText(OFFe);
             huminicial.setText(HINIe);
@@ -546,8 +546,8 @@ public class humedad extends Fragment {
         }else if (relay==1&&!relayListhum.isEmpty()){
             ONe = Integer.parseInt(relayListhum.get(1).get("humONhh"))+" "+getString(R.string.puntos)+" "+Integer.parseInt(relayListhum.get(1).get("humONmm"))+" "+getString(R.string.puntos)+" "+Integer.parseInt(relayListhum.get(1).get("humONss"));
             OFFe = Integer.parseInt(relayListhum.get(1).get("humOFFhh"))+" "+getString(R.string.puntos)+" "+Integer.parseInt(relayListhum.get(1).get("humOFFmm"))+" "+getString(R.string.puntos)+" "+Integer.parseInt(relayListhum.get(1).get("humOFFss"));
-            HINIe = relayListhum.get(1).get("humINI");
-            HFINe = relayListhum.get(1).get("humFIN");
+            HINIe = relayListhum.get(1).get("humINI")+getString(R.string.porcentaje);
+            HFINe = relayListhum.get(1).get("humFIN")+getString(R.string.porcentaje);
             ontime.setText(ONe);
             oftime.setText(OFFe);
             huminicial.setText(HINIe);
@@ -556,8 +556,8 @@ public class humedad extends Fragment {
             if (relay==2&&!relayListhum.isEmpty()){
                 ONe = Integer.parseInt(relayListhum.get(2).get("humONhh"))+" "+getString(R.string.puntos)+" "+Integer.parseInt(relayListhum.get(2).get("humONmm"))+" "+getString(R.string.puntos)+" "+Integer.parseInt(relayListhum.get(2).get("humONss"));
                 OFFe = Integer.parseInt(relayListhum.get(2).get("humOFFhh"))+" "+getString(R.string.puntos)+" "+Integer.parseInt(relayListhum.get(2).get("humOFFmm"))+" "+getString(R.string.puntos)+" "+Integer.parseInt(relayListhum.get(2).get("humOFFss"));
-                HINIe = relayListhum.get(2).get("humINI");
-                HFINe = relayListhum.get(2).get("humFIN");
+                HINIe = relayListhum.get(2).get("humINI")+getString(R.string.porcentaje);
+                HFINe = relayListhum.get(2).get("humFIN")+getString(R.string.porcentaje);
                 ontime.setText(ONe);
                 oftime.setText(OFFe);
                 huminicial.setText(HINIe);
@@ -565,8 +565,8 @@ public class humedad extends Fragment {
             }else if (relay==3&&!relayListhum.isEmpty()){
                 ONe = Integer.parseInt(relayListhum.get(3).get("humONhh"))+" "+getString(R.string.puntos)+" "+Integer.parseInt(relayListhum.get(3).get("humONmm"))+" "+getString(R.string.puntos)+" "+Integer.parseInt(relayListhum.get(3).get("humONss"));
                 OFFe = Integer.parseInt(relayListhum.get(3).get("humOFFhh"))+" "+getString(R.string.puntos)+" "+Integer.parseInt(relayListhum.get(3).get("humOFFmm"))+" "+getString(R.string.puntos)+" "+Integer.parseInt(relayListhum.get(3).get("humOFFss"));
-                HINIe = relayListhum.get(3).get("humINI");
-                HFINe = relayListhum.get(3).get("humFIN");
+                HINIe = relayListhum.get(3).get("humINI")+getString(R.string.porcentaje);
+                HFINe = relayListhum.get(3).get("humFIN")+getString(R.string.porcentaje);
                 ontime.setText(ONe);
                 oftime.setText(OFFe);
                 huminicial.setText(HINIe);

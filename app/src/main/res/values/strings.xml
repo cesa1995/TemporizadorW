@@ -25,5 +25,7 @@
     <string name="devicename">Ingrese el nombre del dispositivo</string>
     <string name="nombre">NOMBRE</string>
     <string name="color">COLOR</string>
+    <string name="porcentaje">%</string>
+    <string name="centigrados">°C</string>
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

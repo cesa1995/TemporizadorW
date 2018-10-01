@@ -22,6 +22,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+            <!-- PANEL DE INFORMACION -->
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -77,6 +79,8 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"/>
 
+            <!-- TEMPERATURA INICIAL-->
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -127,6 +131,8 @@
                     android:layout_margin="2dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"/>
+
+            <!-- TEMPERATURA FINAL  -->
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -181,6 +187,8 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"/>
 
+            <!-- TIEMPO ENCENDIDO -->
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -231,6 +239,8 @@
                     android:layout_margin="2dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"/>
+
+            <!-- TIEMPO DE APAGADO-->
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -284,6 +294,8 @@
                 android:layout_marginRight="5dp"/>
 
         </LinearLayout>
+
+            <!-- BARRA DE PROGRESO-->
 
     </ScrollView>
 
