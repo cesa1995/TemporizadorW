@@ -11,6 +11,7 @@ import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -49,7 +50,7 @@ public class temperatura extends Fragment {
     String ONe, OFFe, HINIe, HFINe, urlsave;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_temperatura, container, false);
@@ -189,6 +190,7 @@ public class temperatura extends Fragment {
 
     public String getWifiName(Context context) {
         WifiManager manager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        assert manager != null;
         if (!manager.isWifiEnabled()) {
             manager.setWifiEnabled(true);
             getActivity().finish();
