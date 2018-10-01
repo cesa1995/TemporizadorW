@@ -12,6 +12,8 @@ import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -22,6 +24,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.NumberPicker;
 import android.widget.ProgressBar;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -43,13 +46,14 @@ public class temporizador extends Fragment{
 
     FloatingActionButton saveBtn;
     TextView on, off, horaini, horafin;
+    Switch timeswi;
     ImageButton onbtn, offbtn, horainibtn, horafinbtn;
     String ONe, OFFe, INIe, FINe, urlsave;
     int relay;
     NumberPicker hora,minutos,segundos;
     int hh,mm,ss,bon;
     ArrayList<HashMap<String, String>> relayList;
-    comunication mCallback;
+   // comunication mCallback;
     ProgressBar cargando;
 
 
@@ -64,6 +68,7 @@ public class temporizador extends Fragment{
 
 
     private void initUI(View v) {
+        timeswi = v.findViewById(R.id.tiemposwi);
         on = v.findViewById(R.id.on);
         off = v.findViewById(R.id.off);
         horaini = v.findViewById(R.id.horaini);
@@ -115,6 +120,72 @@ public class temporizador extends Fragment{
             });
 
     }
+/*
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        Toast.makeText(getContext(), "onAttachTemporizador",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Toast.makeText(getContext(), "onCreateTemporizador", Toast.LENGTH_SHORT).show();
+    }
+
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        Toast.makeText(getContext(),"onViewCreatedTemporizador",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Toast.makeText(getContext(), "onActivityCreatedTemporizador", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Toast.makeText(getContext(), "onStartTemporizador", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Toast.makeText(getContext(), "onResumeTemporizador", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Toast.makeText(getContext(), "onPauseTemporizador", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Toast.makeText(getContext(), "onStopTemporizador", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Toast.makeText(getContext(), "onDestroyTemporizador", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Toast.makeText(getContext(), "onDestroyTemporizador", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        Toast.makeText(getContext(), "onDetachTemporizador", Toast.LENGTH_SHORT).show();
+    }
 
     @Override
     public void onAttach(Activity activity) {
@@ -128,7 +199,7 @@ public class temporizador extends Fragment{
             throw new ClassCastException(activity.toString()
                     + " must implement OnHeadlineSelectedListener");
         }
-    }
+    }*/
 
     public void cambiarrelay(int dato){
         relay = dato;
@@ -149,7 +220,7 @@ public class temporizador extends Fragment{
         protected Void doInBackground(Void... arg0) {
             conexion sh = new conexion();
             // Making a request to url and getting response
-            String url = "http://192.168.4.1/info?id=stiotca&pass=1234567&tab=2";
+            String url = "http://192.168.4.1/info?id=stiotca&pass=1234567&tab=1";
             String jsonStr = sh.makeServiceCall(url, "GET");
 
             Log.e(TAG, "Response from url: " + jsonStr);
@@ -238,7 +309,7 @@ public class temporizador extends Fragment{
         @Override
         protected void onPostExecute(Void result) {
             selec();
-            mCallback.sendata(0, relay);
+            //mCallback.sendata(0, relay);
             cargando.setVisibility(View.INVISIBLE);
         }
 

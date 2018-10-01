@@ -143,7 +143,7 @@ public class ajustes extends Fragment{
 
             conexion sh = new conexion();
             // Making a request to url and getting response
-            String url = "http://192.168.4.1/info?id=stiotca&pass=1234567&tab=3";
+            String url = "http://192.168.4.1/info?id=stiotca&pass=1234567&tab=2";
             String jsonStr = sh.makeServiceCall(url, "GET");
 
             Log.e(TAG, "Response from url: " + jsonStr);

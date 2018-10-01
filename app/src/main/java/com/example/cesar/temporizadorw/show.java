@@ -20,7 +20,7 @@ import com.example.cesar.temporizadorw.tabs.humedad;
 import com.example.cesar.temporizadorw.tabs.temperatura;
 import com.example.cesar.temporizadorw.tabs.temporizador;
 
-public class show extends AppCompatActivity implements comunication {
+public class show extends AppCompatActivity /*implements comunication*/{
 
     ToggleButton I,II,III,IV;
 
@@ -52,9 +52,10 @@ public class show extends AppCompatActivity implements comunication {
             III.setChecked(false);
             IV.setChecked(false);
             relayName = findViewById(R.id.relayName);
+            fragmentposition = 0;
 
             adapter = new PagerAdapter(getSupportFragmentManager());
-            ViewPager viewPager = (ViewPager) findViewById(R.id.container);
+            final ViewPager viewPager = (ViewPager) findViewById(R.id.container);
             viewPager.setAdapter(adapter);
 
             tabLayout = (TabLayout) findViewById(R.id.tabs);
@@ -62,6 +63,42 @@ public class show extends AppCompatActivity implements comunication {
             viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
             tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));
 
+            viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                @Override
+                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                }
+
+                @Override
+                public void onPageSelected(int position) {
+                    if (tabLayout.getTabAt(0).isSelected()){
+                        Toast.makeText(show.this,"Tiempo",Toast.LENGTH_SHORT).show();
+                        fragmentposition = 0;
+                        Log.i(String.valueOf(LOG_TAG), String.valueOf(fragmentposition));
+                        selec(I);
+                    }else if (tabLayout.getTabAt(1).isSelected()){
+                        Toast.makeText(show.this, "Humedad", Toast.LENGTH_SHORT).show();
+                        fragmentposition = 1;
+                        Log.i(String.valueOf(LOG_TAG), String.valueOf(fragmentposition));
+                        selec(I);
+                    }else if (tabLayout.getTabAt(2).isSelected()){
+                        Toast.makeText(show.this, "Temperarura", Toast.LENGTH_SHORT).show();
+                        fragmentposition = 2;
+                        Log.i(String.valueOf(LOG_TAG), String.valueOf(fragmentposition));
+                        selec(I);
+                    }else {
+                        Toast.makeText(show.this, "Configuracion", Toast.LENGTH_SHORT).show();
+                        fragmentposition = 3;
+                        Log.i(String.valueOf(LOG_TAG), String.valueOf(fragmentposition));
+                        selec(I);
+                    }
+                }
+
+                @Override
+                public void onPageScrollStateChanged(int state) {
+
+                }
+            });
             I.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -114,7 +151,7 @@ public class show extends AppCompatActivity implements comunication {
 
     }
 
-    @Override
+    /*@Override
     public void sendata(int fragment, int relay) {
         fragmentposition = fragment;
         switch (relay){
@@ -131,10 +168,11 @@ public class show extends AppCompatActivity implements comunication {
                 selec(IV);
                 break;
         }
-    }
+    }*/
 
 
     public void selec(ToggleButton relay){
+        Log.i(String.valueOf(LOG_TAG), String.valueOf(fragmentposition));
         I.setChecked(false);
         II.setChecked(false);
         III.setChecked(false);
