@@ -10,7 +10,9 @@ import android.provider.Settings;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.util.Log;
+import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +29,8 @@ public class show extends AppCompatActivity /*implements comunication*/{
     TextView relayName;
 
     int  fragmentposition;
+
+    LinearLayoutCompat relayes;
 
     PagerAdapter adapter;
     TabLayout tabLayout;
@@ -53,6 +57,7 @@ public class show extends AppCompatActivity /*implements comunication*/{
             IV.setChecked(false);
             relayName = findViewById(R.id.relayName);
             fragmentposition = 0;
+            relayes = findViewById(R.id.relayes);
 
             adapter = new PagerAdapter(getSupportFragmentManager());
             final ViewPager viewPager = (ViewPager) findViewById(R.id.container);
@@ -72,21 +77,25 @@ public class show extends AppCompatActivity /*implements comunication*/{
                 @Override
                 public void onPageSelected(int position) {
                     if (tabLayout.getTabAt(0).isSelected()){
+                        relayes.setVisibility(View.VISIBLE);
                         Toast.makeText(show.this,"Tiempo",Toast.LENGTH_SHORT).show();
                         fragmentposition = 0;
                         Log.i(String.valueOf(LOG_TAG), String.valueOf(fragmentposition));
                         selec(I);
                     }else if (tabLayout.getTabAt(1).isSelected()){
+                        relayes.setVisibility(View.VISIBLE);
                         Toast.makeText(show.this, "Humedad", Toast.LENGTH_SHORT).show();
                         fragmentposition = 1;
                         Log.i(String.valueOf(LOG_TAG), String.valueOf(fragmentposition));
                         selec(I);
                     }else if (tabLayout.getTabAt(2).isSelected()){
+                        relayes.setVisibility(View.VISIBLE);
                         Toast.makeText(show.this, "Temperarura", Toast.LENGTH_SHORT).show();
                         fragmentposition = 2;
                         Log.i(String.valueOf(LOG_TAG), String.valueOf(fragmentposition));
                         selec(I);
                     }else {
+                        relayes.setVisibility(View.GONE);
                         Toast.makeText(show.this, "Configuracion", Toast.LENGTH_SHORT).show();
                         fragmentposition = 3;
                         Log.i(String.valueOf(LOG_TAG), String.valueOf(fragmentposition));
