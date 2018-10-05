@@ -1,41 +1,30 @@
 package com.example.cesar.temporizadorw.tabs;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.NumberPicker;
 import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import com.example.cesar.temporizadorw.R;
-import com.example.cesar.temporizadorw.comunication;
 import com.example.cesar.temporizadorw.conexion;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,8 +42,9 @@ public class temporizador extends Fragment{
     NumberPicker hora,minutos,segundos;
     int hh,mm,ss,bon;
     ArrayList<HashMap<String, String>> relayList;
-   // comunication mCallback;
     ProgressBar cargando;
+    SharedPreferences data;
+
 
 
     @Override
@@ -80,8 +70,10 @@ public class temporizador extends Fragment{
         relayList = new ArrayList<>();
         cargando = v.findViewById(R.id.progressBar);
         relay=0;
+        data = this.getActivity().getSharedPreferences("datosDevice",Context.MODE_PRIVATE);
 
         new Gettimes().execute();
+
 
             onbtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -120,86 +112,6 @@ public class temporizador extends Fragment{
             });
 
     }
-/*
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        Toast.makeText(getContext(), "onAttachTemporizador",Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Toast.makeText(getContext(), "onCreateTemporizador", Toast.LENGTH_SHORT).show();
-    }
-
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        Toast.makeText(getContext(),"onViewCreatedTemporizador",Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        Toast.makeText(getContext(), "onActivityCreatedTemporizador", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        Toast.makeText(getContext(), "onStartTemporizador", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        Toast.makeText(getContext(), "onResumeTemporizador", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        Toast.makeText(getContext(), "onPauseTemporizador", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        Toast.makeText(getContext(), "onStopTemporizador", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        Toast.makeText(getContext(), "onDestroyTemporizador", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Toast.makeText(getContext(), "onDestroyTemporizador", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        Toast.makeText(getContext(), "onDetachTemporizador", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-
-        // This makes sure that the container activity has implemented
-        // the callback interface. If not, it throws an exception
-        try {
-            mCallback = (comunication) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnHeadlineSelectedListener");
-        }
-    }*/
 
     public void cambiarrelay(int dato){
         relay = dato;
@@ -218,89 +130,46 @@ public class temporizador extends Fragment{
 
         @Override
         protected Void doInBackground(Void... arg0) {
-            conexion sh = new conexion();
-            // Making a request to url and getting response
-            String url = "http://192.168.4.1/info?id=stiotca&pass=1234567&tab=1";
-            String jsonStr = sh.makeServiceCall(url, "GET");
+            if (!relayList.isEmpty()) {
+                relayList.clear();
+            }
+            // looping through All Times
+            for (int i = 0; i < 4; i++) {
+                String timeONhh = data.getString("timeONhh"+i, "no Data");
+                String timeONmm = data.getString("timeONmm"+i, "no Data");
+                String timeONss = data.getString("timeONss"+i, "no Data");
+                String timeOFFhh = data.getString("timeOFFhh"+i, "no Data");
+                String timeOFFmm = data.getString("timeOFFmm"+i, "no Data");
+                String timeOFFss = data.getString("timeOFFss"+i, "no Data");
+                String timeINhh = data.getString("timeINhh"+i, "no Data");
+                String timeINmm = data.getString("timeINmm"+i, "no Data");
+                String timeINss = data.getString("timeINss"+i, "no Data");
+                String timeFIhh = data.getString("timeFIhh"+i, "no Data");
+                String timeFImm = data.getString("timeFImm"+i, "no Data");
+                String timeFIss = data.getString("timeFIss"+i, "no Data");
 
-            Log.e(TAG, "Response from url: " + jsonStr);
-            if (jsonStr != null) {
-                try {
-                    JSONObject jsonObj = new JSONObject(jsonStr);
+                // tmp hash map for single Times
+                HashMap<String, String> relay = new HashMap<>();
 
-                    // Getting JSON Array node
-                    JSONArray contacts = jsonObj.getJSONArray("info");
-                    if (!relayList.isEmpty()) {
-                        //for (int i = 0; i < relayList.size(); i++) {
-                        //  relayList.remove(i);
-                        //}
-                        relayList.clear();
-                    }
-                    // looping through All Times
-                    for (int i = 0; i < contacts.length(); i++) {
-                        JSONObject c = contacts.getJSONObject(i);
-                        String nombre = c.getString("nombre");
-                        String timeINhh = c.getString("tin_HH");
-                        String timeONhh = c.getString("ton_HH");
-                        String timeOFFhh = c.getString("tof_HH");
-                        String timeFIhh = c.getString("tfi_HH");
-                        String timeINmm = c.getString("tin_MM");
-                        String timeONmm = c.getString("ton_MM");
-                        String timeOFFmm = c.getString("tof_MM");
-                        String timeFImm = c.getString("tfi_MM");
-                        String timeINss = c.getString("tin_SS");
-                        String timeONss = c.getString("ton_SS");
-                        String timeOFFss = c.getString("tof_SS");
-                        String timeFIss = c.getString("tfi_SS");
+                // adding each child node to HashMap key => value
+                relay.put("timeONhh", timeONhh);
+                relay.put("timeONmm", timeONmm);
+                relay.put("timeONss", timeONss);
+                relay.put("timeOFFhh", timeOFFhh);
+                relay.put("timeOFFmm", timeOFFmm);
+                relay.put("timeOFFss", timeOFFss);
+                relay.put("timeINhh", timeINhh);
+                relay.put("timeINmm", timeINmm);
+                relay.put("timeINss", timeINss);
+                relay.put("timeFIhh", timeFIhh);
+                relay.put("timeFImm", timeFImm);
+                relay.put("timeFIss", timeFIss);
 
-                        // tmp hash map for single Times
-                        HashMap<String, String> relay = new HashMap<>();
+                // adding contact to contact list
+                relayList.add(relay);
 
-                        // adding each child node to HashMap key => value
-                        relay.put("nombre", nombre);
-                        relay.put("timeINhh", timeINhh);
-                        relay.put("timeINmm", timeINmm);
-                        relay.put("timeINss", timeINss);
-                        relay.put("timeONhh", timeONhh);
-                        relay.put("timeONmm", timeONmm);
-                        relay.put("timeONss", timeONss);
-                        relay.put("timeOFFhh", timeOFFhh);
-                        relay.put("timeOFFmm", timeOFFmm);
-                        relay.put("timeOFFss", timeOFFss);
-                        relay.put("timeFIhh", timeFIhh);
-                        relay.put("timeFImm", timeFImm);
-                        relay.put("timeFIss", timeFIss);
+                System.out.println(relayList.toString());
 
-                        // adding contact to contact list
-                        relayList.add(relay);
-
-                        System.out.println(relayList.toString());
-
-                        //entryArrayList= new ArrayList<>(relay.entrySet());
-                    }
-                } catch (final JSONException e) {
-                    Log.e(TAG, "error parsing datos: " + e.getMessage());
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(getContext(),
-                                    "error parsing datos: " + e.getMessage(),
-                                    Toast.LENGTH_LONG).show();
-                        }
-                    });
-
-                }
-
-            } else {
-                Log.e(TAG, "No se reciben datos");
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(getContext(),
-                                "no se reciben datos del servidor",
-                                Toast.LENGTH_LONG).show();
-                    }
-                });
             }
 
             return null;
@@ -309,7 +178,7 @@ public class temporizador extends Fragment{
         @Override
         protected void onPostExecute(Void result) {
             selec();
-            //mCallback.sendata(0, relay);
+            //mCallback.sendata(1, relay);
             cargando.setVisibility(View.INVISIBLE);
         }
 

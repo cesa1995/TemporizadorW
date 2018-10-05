@@ -2,9 +2,11 @@ package com.example.cesar.temporizadorw;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.design.widget.TabLayout;
@@ -14,6 +16,7 @@ import android.support.v7.widget.LinearLayoutCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -22,7 +25,15 @@ import com.example.cesar.temporizadorw.tabs.humedad;
 import com.example.cesar.temporizadorw.tabs.temperatura;
 import com.example.cesar.temporizadorw.tabs.temporizador;
 
-public class show extends AppCompatActivity /*implements comunication*/{
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+
+import static android.content.ContentValues.TAG;
+
+public class show extends AppCompatActivity{
 
     ToggleButton I,II,III,IV;
 
@@ -32,11 +43,17 @@ public class show extends AppCompatActivity /*implements comunication*/{
 
     LinearLayoutCompat relayes;
 
+    addData addData;
+
+    ProgressBar cargando;
+
     PagerAdapter adapter;
     TabLayout tabLayout;
     Log LOG_TAG;
 
     int relay2;
+
+    SharedPreferences datosDevice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,15 +75,19 @@ public class show extends AppCompatActivity /*implements comunication*/{
             relayName = findViewById(R.id.relayName);
             fragmentposition = 0;
             relayes = findViewById(R.id.relayes);
+            cargando = findViewById(R.id.cargando);
+            datosDevice = getSharedPreferences("datosDevice", Context.MODE_PRIVATE);
 
             adapter = new PagerAdapter(getSupportFragmentManager());
-            final ViewPager viewPager = (ViewPager) findViewById(R.id.container);
+            ViewPager viewPager = (ViewPager) findViewById(R.id.container);
             viewPager.setAdapter(adapter);
 
             tabLayout = (TabLayout) findViewById(R.id.tabs);
 
             viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
             tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));
+
+            new Gettimes().execute();
 
             viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                 @Override
@@ -160,24 +181,28 @@ public class show extends AppCompatActivity /*implements comunication*/{
 
     }
 
-    /*@Override
-    public void sendata(int fragment, int relay) {
-        fragmentposition = fragment;
-        switch (relay){
-            case 0:
-                selec(I);
-                break;
-            case 1:
-                selec(II);
-                break;
-            case 2:
-                selec(III);
-                break;
-            case 3:
-                selec(IV);
-                break;
+
+    public class Gettimes extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected void onPreExecute() {
+            cargando.setVisibility(View.VISIBLE);
+
+
         }
-    }*/
+
+        @Override
+        protected Void doInBackground(Void... arg0) {
+           addData.shareData(datosDevice,show.this);
+           return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            cargando.setVisibility(View.INVISIBLE);
+        }
+
+    }
 
 
     public void selec(ToggleButton relay){

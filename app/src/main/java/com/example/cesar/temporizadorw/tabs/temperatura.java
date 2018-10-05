@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
@@ -34,6 +35,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 import static android.content.ContentValues.TAG;
 
@@ -48,6 +50,8 @@ public class temperatura extends Fragment {
     ProgressBar cargando;
     ArrayList<HashMap<String, String>> relayListTemp;
     String ONe, OFFe, HINIe, HFINe, urlsave;
+
+    SharedPreferences data;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -72,6 +76,7 @@ public class temperatura extends Fragment {
         relayListTemp = new ArrayList<>();
         relay = 0;
         cargando = v.findViewById(R.id.progressBar);
+        data = this.getActivity().getSharedPreferences("datosDevice",Context.MODE_PRIVATE);
 
         new Gettimes().execute();
 
@@ -408,22 +413,6 @@ public class temperatura extends Fragment {
 
     }
 
-
-
-   /* @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-
-        // This makes sure that the container activity has implemented
-        // the callback interface. If not, it throws an exception
-        try {
-            mCallback = (comunication) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnHeadlineSelectedListener");
-        }
-    }*/
-
     public void cambiarrelay(int dato){
         relay = dato;
         selec();
@@ -440,18 +429,6 @@ public class temperatura extends Fragment {
 
         @Override
         protected Void doInBackground(Void... arg0) {
-            conexion sh = new conexion();
-            // Making a request to url and getting response
-            String url = "http://192.168.4.1/info?id=stiotca&pass=1234567&tab=3";
-            String jsonStr = sh.makeServiceCall(url, "GET");
-
-            Log.e(TAG, "Response from url: " + jsonStr);
-            if (jsonStr != null) {
-                try {
-                    JSONObject jsonObj = new JSONObject(jsonStr);
-
-                    // Getting JSON Array node
-                    JSONArray contacts = jsonObj.getJSONArray("info");
                     if (!relayListTemp.isEmpty()) {
                         //for (int i = 0; i < relayList.size(); i++) {
                         //  relayList.remove(i);
@@ -459,23 +436,20 @@ public class temperatura extends Fragment {
                         relayListTemp.clear();
                     }
                     // looping through All Times
-                    for (int i = 0; i < contacts.length(); i++) {
-                        JSONObject c = contacts.getJSONObject(i);
-                        String nombre = c.getString("nombre");
-                        String tempONhh = c.getString("tempin_HH");
-                        String tempONmm = c.getString("tempin_MM");
-                        String tempONss = c.getString("tempin_SS");
-                        String tempOFFhh = c.getString("tempfi_HH");
-                        String tempOFFmm = c.getString("tempfi_MM");
-                        String tempOFFss = c.getString("tempfi_SS");
-                        String tempINI = c.getString("TEMini");
-                        String tempFIN = c.getString("TEMfin");
+                    for (int i = 0; i < 4; i++) {
+                        String tempONhh = data.getString("tempONhh"+i, "no Data");
+                        String tempONmm = data.getString("tempONmm"+i, "no Data");
+                        String tempONss = data.getString("tempONss"+i, "no Data");
+                        String tempOFFhh = data.getString("tempOFFhh"+i, "no Data");
+                        String tempOFFmm = data.getString("tempOFFmm"+i, "no Data");
+                        String tempOFFss = data.getString("tempOFFss"+i, "no Data");
+                        String tempINI = data.getString("tempINI"+i, "no Data");
+                        String tempFIN = data.getString("tempFIN"+i, "no Data");
 
                         // tmp hash map for single Times
                         HashMap<String, String> relay = new HashMap<>();
 
                         // adding each child node to HashMap key => value
-                        relay.put("nombre", nombre);
                         relay.put("tempONhh", tempONhh);
                         relay.put("tempONmm", tempONmm);
                         relay.put("tempONss", tempONss);
@@ -492,30 +466,6 @@ public class temperatura extends Fragment {
 
                         //entryArrayList= new ArrayList<>(relay.entrySet());
                     }
-                } catch (final JSONException e) {
-                    Log.e(TAG, "error parsing datos: " + e.getMessage());
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(getContext(),
-                                    "error parsing datos: " + e.getMessage(),
-                                    Toast.LENGTH_LONG).show();
-                        }
-                    });
-
-                }
-
-            } else {
-                Log.e(TAG, "No se reciben datos");
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(getContext(),
-                                "no se reciben datos del servidor",
-                                Toast.LENGTH_LONG).show();
-                    }
-                });
-            }
 
             return null;
         }

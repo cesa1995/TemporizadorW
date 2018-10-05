@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
@@ -47,16 +48,14 @@ public class humedad extends Fragment {
     ImageButton huminicialbtn,humfinalbtn,ontimebtn,oftimebtn;
     NumberPicker hora, minutos, segundos, humedad;
     int relay, hh, ss, mm, bon, hum;
-    //comunication mCallback;
     ProgressBar cargando;
     ArrayList<HashMap<String, String>> relayListhum;
     String ONe, OFFe, HINIe, HFINe, urlsave;
-
+    SharedPreferences data;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_humedad, container, false);
         initUI(v);
         return v;
@@ -76,6 +75,7 @@ public class humedad extends Fragment {
         relayListhum = new ArrayList<>();
         relay = 0;
         cargando = v.findViewById(R.id.progressBar);
+        data = this.getActivity().getSharedPreferences("datosDevice",Context.MODE_PRIVATE);
 
         new Gettimes().execute();
 
@@ -413,20 +413,6 @@ public class humedad extends Fragment {
 
     }
 
-  /*  @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-
-        // This makes sure that the container activity has implemented
-        // the callback interface. If not, it throws an exception
-        try {
-            mCallback = (comunication) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnHeadlineSelectedListener");
-        }
-    }*/
-
     public void cambiarrelay(int dato){
         relay = dato;
         selec();
@@ -443,81 +429,42 @@ public class humedad extends Fragment {
 
         @Override
         protected Void doInBackground(Void... arg0) {
-            conexion sh = new conexion();
-            // Making a request to url and getting response
-            String url = "http://192.168.4.1/info?id=stiotca&pass=1234567&tab=0";
-            String jsonStr = sh.makeServiceCall(url, "GET");
+            if (!relayListhum.isEmpty()) {
+                //for (int i = 0; i < relayList.size(); i++) {
+                //  relayList.remove(i);
+                //}
+                relayListhum.clear();
+            }
+            // looping through All Times
+            for (int i = 0; i < 4; i++) {
+                String humONhh = data.getString("humONhh"+i, "no Data");
+                String humONmm = data.getString("humONmm"+i, "no Data");
+                String humONss = data.getString("humONss"+i, "no Data");
+                String humOFFhh = data.getString("humOFFhh"+i, "no Data");
+                String humOFFmm = data.getString("humOFFmm"+i, "no Data");
+                String humOFFss = data.getString("humOFFss"+i, "no Data");
+                String humINI = data.getString("humINI"+i, "no Data");
+                String humFIN = data.getString("humFIN"+i, "no Data");
 
-            Log.e(TAG, "Response from url: " + jsonStr);
-            if (jsonStr != null) {
-                try {
-                    JSONObject jsonObj = new JSONObject(jsonStr);
+                // tmp hash map for single Times
+                HashMap<String, String> relay = new HashMap<>();
 
-                    // Getting JSON Array node
-                    JSONArray contacts = jsonObj.getJSONArray("info");
-                    if (!relayListhum.isEmpty()) {
-                        //for (int i = 0; i < relayList.size(); i++) {
-                        //  relayList.remove(i);
-                        //}
-                        relayListhum.clear();
-                    }
-                    // looping through All Times
-                    for (int i = 0; i < contacts.length(); i++) {
-                        JSONObject c = contacts.getJSONObject(i);
-                        String nombre = c.getString("nombre");
-                        String humONhh = c.getString("hin_HH");
-                        String humONmm = c.getString("hin_MM");
-                        String humONss = c.getString("hin_SS");
-                        String humOFFhh = c.getString("hfi_HH");
-                        String humOFFmm = c.getString("hfi_MM");
-                        String humOFFss = c.getString("hfi_SS");
-                        String humINI = c.getString("HUMini");
-                        String humFIN = c.getString("HUMfin");
+                // adding each child node to HashMap key => value
+                relay.put("humONhh", humONhh);
+                relay.put("humONmm", humONmm);
+                relay.put("humONss", humONss);
+                relay.put("humOFFhh", humOFFhh);
+                relay.put("humOFFmm", humOFFmm);
+                relay.put("humOFFss", humOFFss);
+                relay.put("humINI", humINI);
+                relay.put("humFIN", humFIN);
 
-                        // tmp hash map for single Times
-                        HashMap<String, String> relay = new HashMap<>();
+                // adding contact to contact list
+                relayListhum.add(relay);
 
-                        // adding each child node to HashMap key => value
-                        relay.put("nombre", nombre);
-                        relay.put("humONhh", humONhh);
-                        relay.put("humONmm", humONmm);
-                        relay.put("humONss", humONss);
-                        relay.put("humOFFhh", humOFFhh);
-                        relay.put("humOFFmm", humOFFmm);
-                        relay.put("humOFFss", humOFFss);
-                        relay.put("humINI", humINI);
-                        relay.put("humFIN", humFIN);
+                System.out.println(relayListhum.toString());
 
-                        // adding contact to contact list
-                        relayListhum.add(relay);
-
-                        System.out.println(relayListhum.toString());
-
-                        //entryArrayList= new ArrayList<>(relay.entrySet());
-                    }
-                } catch (final JSONException e) {
-                    Log.e(TAG, "error parsing datos: " + e.getMessage());
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(getContext(),
-                                    "error parsing datos: " + e.getMessage(),
-                                    Toast.LENGTH_LONG).show();
-                        }
-                    });
-
-                }
-
-            } else {
-                Log.e(TAG, "No se reciben datos");
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(getContext(),
-                                "no se reciben datos del servidor",
-                                Toast.LENGTH_LONG).show();
-                    }
-                });
+                //entryArrayList= new ArrayList<>(relay.entrySet());
             }
 
             return null;
@@ -531,6 +478,7 @@ public class humedad extends Fragment {
         }
 
     }
+
 
     public void selec(){
 

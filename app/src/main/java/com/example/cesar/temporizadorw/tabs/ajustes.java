@@ -2,6 +2,8 @@ package com.example.cesar.temporizadorw.tabs;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -40,6 +42,7 @@ public class ajustes extends Fragment{
     int horan, minutosn, segundosn, dian, mesn, yearn;
     String diaWeekn, urlsave;
     int hora, min, dia, mes, year, seg;
+    SharedPreferences data;
 
 
     @Override
@@ -60,6 +63,7 @@ public class ajustes extends Fragment{
         timeb = v.findViewById(R.id.ib_obtener_hora);
         dateb = v.findViewById(R.id.ib_obtener_fecha);
         saveBtn = v.findViewById(R.id.saveBtn);
+        data = this.getActivity().getSharedPreferences("datosDevice", Context.MODE_PRIVATE);
 
         Calendar c = Calendar.getInstance();
         hora = c.get(Calendar.HOUR_OF_DAY);
@@ -140,86 +144,13 @@ public class ajustes extends Fragment{
 
         @Override
         protected Void doInBackground(Void... arg0) {
-
-            conexion sh = new conexion();
-            // Making a request to url and getting response
-            String url = "http://192.168.4.1/info?id=stiotca&pass=1234567&tab=2";
-            String jsonStr = sh.makeServiceCall(url, "GET");
-
-            Log.e(TAG, "Response from url: " + jsonStr);
-            if (jsonStr != null) {
-                try {
-                    JSONObject jsonObj = new JSONObject(jsonStr);
-
-                    // Getting JSON Array node
-                    JSONArray infocon = jsonObj.getJSONArray("infoconfig");
-                    /*if (!relaycon.isEmpty()) {
-                        //for (int i = 0; i < relayList.size(); i++) {
-                        //  relayList.remove(i);
-                        //}
-                        relaycon.clear();
-                    }*/
-                    // looping through All Times
-                    for (int i = 0; i < infocon.length(); i++) {
-                        JSONObject c = infocon.getJSONObject(i);
-                        String hora = c.getString("hora");
-                        String minutos = c.getString("minutos");
-                        String segundos = c.getString("segundos");
-                        String diaWeek = c.getString("diaWeek");
-                        String dia = c.getString("dia");
-                        String mes = c.getString("mes");
-                        String year = c.getString("year");
-                        // tmp hash map for single Times
-
-                        // adding each child node to HashMap key => value
-                        relaycon.put("hora", hora);
-                        relaycon.put("minutos", minutos);
-                        relaycon.put("segundos", segundos);
-                        relaycon.put("diaWeek", diaWeek);
-                        relaycon.put("dia", dia);
-                        relaycon.put("mes", mes);
-                        relaycon.put("year", year);
-
-                        horan = Integer.parseInt(relaycon.get("hora"));
-                        minutosn = Integer.parseInt(relaycon.get("minutos"));
-                        segundosn = Integer.parseInt(relaycon.get("segundos"));
-                        diaWeekn = relaycon.get("diaWeek");
-                        dian = Integer.parseInt(relaycon.get("dia"));
-                        mesn = Integer.parseInt(relaycon.get("mes"));
-                        yearn = Integer.parseInt(relaycon.get("year"));
-
-                        // adding contact to contact list
-//                        relayListcon.add(relaycon);
-
-//                        System.out.println(relayListcon.toString());
-
-                        //entryArrayList= new ArrayList<>(relay.entrySet());
-                    }
-                } catch (final JSONException e) {
-                    Log.e(TAG, "error parsing datos: " + e.getMessage());
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(getContext(),
-                                    "error parsing datos: " + e.getMessage(),
-                                    Toast.LENGTH_LONG).show();
-                        }
-                    });
-
-                }
-
-            } else {
-                Log.e(TAG, "No se reciben datos");
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(getContext(),
-                                "no se reciben datos del servidor",
-                                Toast.LENGTH_LONG).show();
-                    }
-                });
-            }
-
+            horan = Integer.parseInt(data.getString("hora", "no Data"));
+            minutosn = Integer.parseInt(data.getString("minutos","no Data"));
+            segundosn = Integer.parseInt(data.getString("segundos","no Data"));
+            diaWeekn = data.getString("diaweek", "no Data");
+            dian = Integer.parseInt(data.getString("dia", "no Data"));
+            mesn = Integer.parseInt(data.getString("mes", "no Data"));
+            yearn = Integer.parseInt(data.getString("year", "no Data"));
             return null;
         }
 
