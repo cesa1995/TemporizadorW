@@ -37,8 +37,6 @@ public class ajustes extends Fragment{
     ImageButton timeb, dateb;
     FloatingActionButton saveBtn;
 
-    HashMap<String, String> relaycon = new HashMap<>();
-
     int horan, minutosn, segundosn, dian, mesn, yearn;
     String diaWeekn, urlsave;
     int hora, min, dia, mes, year, seg;
@@ -108,17 +106,21 @@ public class ajustes extends Fragment{
             }
         });
 
-        saveBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-            }
-        });
 
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferences.Editor editor = data.edit();
+
+                editor.putString("hora",String.valueOf(horan));
+                editor.putString("minutos",String.valueOf(minutosn));
+                editor.putString("segundos",String.valueOf(segundosn));
+                editor.putString("dia",String.valueOf(dian));
+                editor.putString("mes",String.valueOf(mesn));
+                editor.putString("year",String.valueOf(yearn));
+
+                editor.apply();
+                editor.commit();
 
                 urlsave = "http://192.168.4.1/config?tconfig=1&ssid=stiotca&pass=1234567";
                 urlsave = urlsave+"&hora="+horan+"&min="+minutosn+"&seg="+segundosn;
@@ -144,13 +146,14 @@ public class ajustes extends Fragment{
 
         @Override
         protected Void doInBackground(Void... arg0) {
-            horan = Integer.parseInt(data.getString("hora", "no Data"));
-            minutosn = Integer.parseInt(data.getString("minutos","no Data"));
-            segundosn = Integer.parseInt(data.getString("segundos","no Data"));
-            diaWeekn = data.getString("diaweek", "no Data");
-            dian = Integer.parseInt(data.getString("dia", "no Data"));
-            mesn = Integer.parseInt(data.getString("mes", "no Data"));
-            yearn = Integer.parseInt(data.getString("year", "no Data"));
+
+            horan = Integer.parseInt(data.getString("hora", "0"));
+            minutosn = Integer.parseInt(data.getString("minutos","0"));
+            segundosn = Integer.parseInt(data.getString("segundos","0"));
+            diaWeekn = data.getString("diaweek", "0");
+            dian = Integer.parseInt(data.getString("dia", "0"));
+            mesn = Integer.parseInt(data.getString("mes", "0"));
+            yearn = Integer.parseInt(data.getString("year", "0"));
             return null;
         }
 
@@ -158,7 +161,7 @@ public class ajustes extends Fragment{
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
             time.setText(horan+":"+minutosn+":"+segundosn);
-            date.setText(dian+"/"+mesn+"/"+yearn+"  "+diaWeekn);
+            date.setText(dian+"/"+mesn+"/"+yearn);
         }
 
     }

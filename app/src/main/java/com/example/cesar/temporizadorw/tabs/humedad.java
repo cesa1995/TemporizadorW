@@ -27,14 +27,9 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.cesar.temporizadorw.comunication;
 
 import com.example.cesar.temporizadorw.R;
 import com.example.cesar.temporizadorw.conexion;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -316,6 +311,7 @@ public class humedad extends Fragment {
 
     public void guardar(int RR, String hhh, String mmm, String sss, String humm){
         String ssid = getWifiName(getContext());
+        SharedPreferences.Editor editor = data.edit();
         if (ssid.contains("TEMP")) {
             String RRR = String.valueOf(RR);
             urlsave ="http://192.168.4.1/config?ssid=stiotca&pass=1234567";
@@ -324,27 +320,35 @@ public class humedad extends Fragment {
                 switch (RR){
                     case 1:
                         relayListhum.get(0).put("humINI",humm);
+                        editor.putString("humINI0",humm);
                         break;
                     case 2:
                         relayListhum.get(0).put("humFIN",humm);
+                        editor.putString("humFIN0",humm);
                         break;
                     case 3:
                         relayListhum.get(1).put("humINI",humm);
+                        editor.putString("humINI1",humm);
                         break;
                     case 4:
                         relayListhum.get(1).put("humFIN",humm);
+                        editor.putString("humFIN1",humm);
                         break;
                     case 5:
                         relayListhum.get(2).put("humINI",humm);
+                        editor.putString("humINI2",humm);
                         break;
                     case 6:
                         relayListhum.get(2).put("humFIN",humm);
+                        editor.putString("humFIN2",humm);
                         break;
                     case 7:
                         relayListhum.get(3).put("humINI",humm);
+                        editor.putString("humINI3",humm);
                         break;
                     case 8:
                         relayListhum.get(3).put("humFIN",humm);
+                        editor.putString("humFIN3",humm);
                         break;
                 }
 
@@ -357,41 +361,65 @@ public class humedad extends Fragment {
                         relayListhum.get(0).put("humONhh", hhh);
                         relayListhum.get(0).put("humONmm", mmm);
                         relayListhum.get(0).put("humONss", sss);
+                        editor.putString("humONhh0",String.valueOf(hhh));
+                        editor.putString("humONmm0",String.valueOf(mmm));
+                        editor.putString("humONss0",String.valueOf(sss));
                         break;
                     case 18:
                         relayListhum.get(0).put("humOFFhh", hhh);
                         relayListhum.get(0).put("humOFFmm", mmm);
                         relayListhum.get(0).put("humOFFss", sss);
+                        editor.putString("humOFFhh0",String.valueOf(hhh));
+                        editor.putString("humOFFmm0",String.valueOf(mmm));
+                        editor.putString("humOFFss0",String.valueOf(sss));
                         break;
                     case 19:
                         relayListhum.get(1).put("humONhh", hhh);
                         relayListhum.get(1).put("humONmm", mmm);
                         relayListhum.get(1).put("humONss", sss);
+                        editor.putString("humONhh1",String.valueOf(hhh));
+                        editor.putString("humONmm1",String.valueOf(mmm));
+                        editor.putString("humONss1",String.valueOf(sss));
                         break;
                     case 20:
                         relayListhum.get(1).put("humOFFhh", hhh);
                         relayListhum.get(1).put("humOFFmm", mmm);
                         relayListhum.get(1).put("humOFFss", sss);
+                        editor.putString("humOFFhh1",String.valueOf(hhh));
+                        editor.putString("humOFFmm1",String.valueOf(mmm));
+                        editor.putString("humOFFss1",String.valueOf(sss));
                         break;
                     case 21:
                         relayListhum.get(2).put("humONhh", hhh);
                         relayListhum.get(2).put("humONmm", mmm);
                         relayListhum.get(2).put("humONss", sss);
+                        editor.putString("humONhh2",String.valueOf(hhh));
+                        editor.putString("humONmm2",String.valueOf(mmm));
+                        editor.putString("humONss2",String.valueOf(sss));
                         break;
                     case 22:
                         relayListhum.get(2).put("humOFFhh", hhh);
                         relayListhum.get(2).put("humOFFmm", mmm);
                         relayListhum.get(2).put("humOFFss", sss);
+                        editor.putString("humOFFhh2",String.valueOf(hhh));
+                        editor.putString("humOFFmm2",String.valueOf(mmm));
+                        editor.putString("humOFFss2",String.valueOf(sss));
                         break;
                     case 23:
                         relayListhum.get(3).put("humONhh", hhh);
                         relayListhum.get(3).put("humONmm", mmm);
                         relayListhum.get(3).put("humONss", sss);
+                        editor.putString("humONhh3",String.valueOf(hhh));
+                        editor.putString("humONmm3",String.valueOf(mmm));
+                        editor.putString("humONss3",String.valueOf(sss));
                         break;
                     case 24:
                         relayListhum.get(3).put("humOFFhh", hhh);
                         relayListhum.get(3).put("humOFFmm", mmm);
                         relayListhum.get(3).put("humOFFss", sss);
+                        editor.putString("humOFFhh3",String.valueOf(hhh));
+                        editor.putString("humOFFmm3",String.valueOf(mmm));
+                        editor.putString("humOFFss3",String.valueOf(sss));
                         break;
                 }
 
@@ -399,6 +427,8 @@ public class humedad extends Fragment {
                 System.out.println(urlsave);
             }
 
+            editor.apply();
+            editor.commit();
 
             new solicitarDatos().execute(urlsave);
 
@@ -437,14 +467,14 @@ public class humedad extends Fragment {
             }
             // looping through All Times
             for (int i = 0; i < 4; i++) {
-                String humONhh = data.getString("humONhh"+i, "no Data");
-                String humONmm = data.getString("humONmm"+i, "no Data");
-                String humONss = data.getString("humONss"+i, "no Data");
-                String humOFFhh = data.getString("humOFFhh"+i, "no Data");
-                String humOFFmm = data.getString("humOFFmm"+i, "no Data");
-                String humOFFss = data.getString("humOFFss"+i, "no Data");
-                String humINI = data.getString("humINI"+i, "no Data");
-                String humFIN = data.getString("humFIN"+i, "no Data");
+                String humONhh = data.getString("humONhh"+i, "0");
+                String humONmm = data.getString("humONmm"+i, "0");
+                String humONss = data.getString("humONss"+i, "0");
+                String humOFFhh = data.getString("humOFFhh"+i, "0");
+                String humOFFmm = data.getString("humOFFmm"+i, "0");
+                String humOFFss = data.getString("humOFFss"+i, "0");
+                String humINI = data.getString("humINI"+i, "0");
+                String humFIN = data.getString("humFIN"+i, "0");
 
                 // tmp hash map for single Times
                 HashMap<String, String> relay = new HashMap<>();

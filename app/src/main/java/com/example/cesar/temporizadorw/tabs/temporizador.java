@@ -135,18 +135,18 @@ public class temporizador extends Fragment{
             }
             // looping through All Times
             for (int i = 0; i < 4; i++) {
-                String timeONhh = data.getString("timeONhh"+i, "no Data");
-                String timeONmm = data.getString("timeONmm"+i, "no Data");
-                String timeONss = data.getString("timeONss"+i, "no Data");
-                String timeOFFhh = data.getString("timeOFFhh"+i, "no Data");
-                String timeOFFmm = data.getString("timeOFFmm"+i, "no Data");
-                String timeOFFss = data.getString("timeOFFss"+i, "no Data");
-                String timeINhh = data.getString("timeINhh"+i, "no Data");
-                String timeINmm = data.getString("timeINmm"+i, "no Data");
-                String timeINss = data.getString("timeINss"+i, "no Data");
-                String timeFIhh = data.getString("timeFIhh"+i, "no Data");
-                String timeFImm = data.getString("timeFImm"+i, "no Data");
-                String timeFIss = data.getString("timeFIss"+i, "no Data");
+                String timeONhh = data.getString("timeONhh"+i, "0");
+                String timeONmm = data.getString("timeONmm"+i, "0");
+                String timeONss = data.getString("timeONss"+i, "0");
+                String timeOFFhh = data.getString("timeOFFhh"+i, "0");
+                String timeOFFmm = data.getString("timeOFFmm"+i, "0");
+                String timeOFFss = data.getString("timeOFFss"+i, "0");
+                String timeINhh = data.getString("timeINhh"+i, "0");
+                String timeINmm = data.getString("timeINmm"+i, "0");
+                String timeINss = data.getString("timeINss"+i, "0");
+                String timeFIhh = data.getString("timeFIhh"+i, "0");
+                String timeFImm = data.getString("timeFImm"+i, "0");
+                String timeFIss = data.getString("timeFIss"+i, "0");
 
                 // tmp hash map for single Times
                 HashMap<String, String> relay = new HashMap<>();
@@ -186,6 +186,7 @@ public class temporizador extends Fragment{
 
     public void guardar(int RR, int hhh,int mmm,int sss){
         String ssid = getWifiName(getContext());
+        SharedPreferences.Editor editor= data.edit();
         if (ssid.contains("TEMP")) {
             String RRR=String.valueOf(RR);
             String hh=String.valueOf(hhh);
@@ -196,83 +197,134 @@ public class temporizador extends Fragment{
                     relayList.get(0).put("timeONhh",String.valueOf(hhh));
                     relayList.get(0).put("timeONmm",String.valueOf(mmm));
                     relayList.get(0).put("timeONss",String.valueOf(sss));
+                    editor.putString("timeONhh0",String.valueOf(hhh));
+                    editor.putString("timeONmm0",String.valueOf(mmm));
+                    editor.putString("timeONss0",String.valueOf(sss));
                     break;
                 case 2:
                     relayList.get(0).put("timeOFFhh",String.valueOf(hhh));
                     relayList.get(0).put("timeOFFmm",String.valueOf(mmm));
                     relayList.get(0).put("timeOFFss",String.valueOf(sss));
+                    editor.putString("timeOFFhh0",String.valueOf(hhh));
+                    editor.putString("timeOFFmm0",String.valueOf(mmm));
+                    editor.putString("timeOFFss0",String.valueOf(sss));
                     break;
                 case 3:
                     relayList.get(0).put("timeINhh",String.valueOf(hhh));
                     relayList.get(0).put("timeINmm",String.valueOf(mmm));
                     relayList.get(0).put("timeINss",String.valueOf(sss));
+                    editor.putString("timeINhh0",String.valueOf(hhh));
+                    editor.putString("timeINmm0",String.valueOf(mmm));
+                    editor.putString("timeINss0",String.valueOf(sss));
                     break;
                 case 4:
                     relayList.get(0).put("timeFIhh",String.valueOf(hhh));
                     relayList.get(0).put("timeFImm",String.valueOf(mmm));
                     relayList.get(0).put("timeFIss",String.valueOf(sss));
+                    editor.putString("timeFIhh0",String.valueOf(hhh));
+                    editor.putString("timeFImm0",String.valueOf(mmm));
+                    editor.putString("timeFIss0",String.valueOf(sss));
                     break;
                 case 5:
                     relayList.get(1).put("timeONhh",String.valueOf(hhh));
                     relayList.get(1).put("timeONmm",String.valueOf(mmm));
                     relayList.get(1).put("timeONss",String.valueOf(sss));
+                    editor.putString("timeONhh1",String.valueOf(hhh));
+                    editor.putString("timeONmm1",String.valueOf(mmm));
+                    editor.putString("timeONss1",String.valueOf(sss));
                     break;
                 case 6:
                     relayList.get(1).put("timeOFFhh",String.valueOf(hhh));
                     relayList.get(1).put("timeOFFmm",String.valueOf(mmm));
                     relayList.get(1).put("timeOFFss",String.valueOf(sss));
+                    editor.putString("timeOFFhh1",String.valueOf(hhh));
+                    editor.putString("timeOFFmm1",String.valueOf(mmm));
+                    editor.putString("timeOFFss1",String.valueOf(sss));
                     break;
                 case 7:
                     relayList.get(1).put("timeINhh",String.valueOf(hhh));
                     relayList.get(1).put("timeINmm",String.valueOf(mmm));
                     relayList.get(1).put("timeINss",String.valueOf(sss));
+                    editor.putString("timeINhh1",String.valueOf(hhh));
+                    editor.putString("timeINmm1",String.valueOf(mmm));
+                    editor.putString("timeINss1",String.valueOf(sss));
                     break;
                 case 8:
                     relayList.get(1).put("timeFIhh",String.valueOf(hhh));
                     relayList.get(1).put("timeFImm",String.valueOf(mmm));
                     relayList.get(1).put("timeFIss",String.valueOf(sss));
+                    editor.putString("timeFIhh1",String.valueOf(hhh));
+                    editor.putString("timeFImm1",String.valueOf(mmm));
+                    editor.putString("timeFIss1",String.valueOf(sss));
                     break;
                 case 9:
                     relayList.get(2).put("timeONhh",String.valueOf(hhh));
                     relayList.get(2).put("timeONmm",String.valueOf(mmm));
                     relayList.get(2).put("timeONss",String.valueOf(sss));
+                    editor.putString("timeONhh2",String.valueOf(hhh));
+                    editor.putString("timeONmm2",String.valueOf(mmm));
+                    editor.putString("timeONss2",String.valueOf(sss));
                     break;
                 case 10:
                     relayList.get(2).put("timeOFFhh",String.valueOf(hhh));
                     relayList.get(2).put("timeOFFmm",String.valueOf(mmm));
                     relayList.get(2).put("timeOFFss",String.valueOf(sss));
+                    editor.putString("timeOFFhh2",String.valueOf(hhh));
+                    editor.putString("timeOFFmm2",String.valueOf(mmm));
+                    editor.putString("timeOFFss2",String.valueOf(sss));
                     break;
                 case 11:
                     relayList.get(2).put("timeINhh",String.valueOf(hhh));
                     relayList.get(2).put("timeINmm",String.valueOf(mmm));
                     relayList.get(2).put("timeINss",String.valueOf(sss));
+                    editor.putString("timeINhh2",String.valueOf(hhh));
+                    editor.putString("timeINmm2",String.valueOf(mmm));
+                    editor.putString("timeINss2",String.valueOf(sss));
                     break;
                 case 12:
                     relayList.get(2).put("timeFIhh",String.valueOf(hhh));
                     relayList.get(2).put("timeFImm",String.valueOf(mmm));
                     relayList.get(2).put("timeFIss",String.valueOf(sss));
+                    editor.putString("timeFIhh2",String.valueOf(hhh));
+                    editor.putString("timeFImm2",String.valueOf(mmm));
+                    editor.putString("timeFIss2",String.valueOf(sss));
                     break;
                 case 13:
                     relayList.get(3).put("timeONhh",String.valueOf(hhh));
                     relayList.get(3).put("timeONmm",String.valueOf(mmm));
                     relayList.get(3).put("timeONss",String.valueOf(sss));
+                    editor.putString("timeONhh3",String.valueOf(hhh));
+                    editor.putString("timeONmm3",String.valueOf(mmm));
+                    editor.putString("timeONss3",String.valueOf(sss));
                     break;
                 case 14:
                     relayList.get(3).put("timeOFFhh",String.valueOf(hhh));
                     relayList.get(3).put("timeOFFmm",String.valueOf(mmm));
                     relayList.get(3).put("timeOFFss",String.valueOf(sss));
+                    editor.putString("timeOFFhh3",String.valueOf(hhh));
+                    editor.putString("timeOFFmm3",String.valueOf(mmm));
+                    editor.putString("timeOFFss3",String.valueOf(sss));
                     break;
                 case 15:
                     relayList.get(3).put("timeINhh",String.valueOf(hhh));
                     relayList.get(3).put("timeINmm",String.valueOf(mmm));
                     relayList.get(3).put("timeINss",String.valueOf(sss));
+                    editor.putString("timeINhh3",String.valueOf(hhh));
+                    editor.putString("timeINmm3",String.valueOf(mmm));
+                    editor.putString("timeINss3",String.valueOf(sss));
                     break;
                 case 16:
                     relayList.get(3).put("timeFIhh",String.valueOf(hhh));
                     relayList.get(3).put("timeFImm",String.valueOf(mmm));
                     relayList.get(3).put("timeFIss",String.valueOf(sss));
+                    editor.putString("timeFIhh3",String.valueOf(hhh));
+                    editor.putString("timeFImm3",String.valueOf(mmm));
+                    editor.putString("timeFIss3",String.valueOf(sss));
                     break;
             }
+
+            editor.apply();
+            editor.commit();
 
             urlsave = "http://192.168.4.1/config?tconfig=2&ssid=stiotca&pass=1234567&hh=" + hh + "&mm=" + mm + "&ss=" + ss + "&R=" + RRR;
             System.out.println(urlsave);

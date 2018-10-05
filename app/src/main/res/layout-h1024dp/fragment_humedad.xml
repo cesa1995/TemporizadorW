@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".tabs.humedad">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="UselessParent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/formatohora"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginStart="100dp"
+                        android:layout_marginLeft="100dp"
+                        tools:ignore="RelativeOverlap" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginEnd="72dp"
+                        android:layout_marginRight="72dp"
+                        android:text="@string/humedad"
+                        tools:ignore="RelativeOverlap" />
+
+                    <TextView
+                        android:id="@+id/humedadActual"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorAccent"
+                        android:text="0"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="52dp"
+                        android:layout_marginEnd="52dp"
+                        android:textSize="18sp"/>
+
+                    <Switch
+                        android:id="@+id/humedadswi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"/>
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="@color/colorAccent"
+                    android:layout_margin="2dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        tools:ignore="RelativeOverlap">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/humedadini"
+                            android:textSize="15sp"
+                            android:layout_marginTop="15sp"/>
+
+                        <TextView
+                            android:id="@+id/huminicial"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="100sp"
+                            android:layout_marginStart="100sp"
+                            android:gravity="center_vertical"
+                            android:textSize="20sp"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:text="0"/>
+
+                    </LinearLayout>
+
+                    <ImageButton
+                        android:id="@+id/huminicialbtn"
+                        android:layout_width="60sp"
+                        android:layout_height="60sp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/humedadini"
+                        android:contentDescription="@string/humedadini"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="9dp"/>
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="@color/colorAccent"
+                    android:layout_margin="2dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        tools:ignore="RelativeOverlap">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/humedadfin"
+                            android:layout_marginTop="15sp"
+                            android:textSize="15sp"/>
+
+                        <TextView
+                            android:id="@+id/humfinal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="100sp"
+                            android:layout_marginStart="100sp"
+                            android:gravity="center_vertical"
+                            android:text="0"
+                            android:textSize="20sp"
+                            android:textColor="@color/colorPrimaryDark"/>
+
+                    </LinearLayout>
+
+                    <ImageButton
+                        android:id="@+id/humfinalbtn"
+                        android:layout_width="60dp"
+                        android:layout_height="60sp"
+                        android:scaleType="fitCenter"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/humedadfin"
+                        android:contentDescription="@string/humedadfin"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="9dp"/>
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="@color/colorAccent"
+                    android:layout_margin="2dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:orientation="vertical"
+                        tools:ignore="RelativeOverlap">
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/inR"
+                            android:textSize="15sp"
+                            android:layout_marginTop="15sp"/>
+
+                        <TextView
+                            android:id="@+id/ontime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="100sp"
+                            android:layout_marginStart="100sp"
+                            android:gravity="center_vertical"
+                            android:textSize="20sp"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:text="0"/>
+
+                    </LinearLayout>
+
+                    <ImageButton
+                        android:id="@+id/ontimebtn"
+                        android:layout_width="60sp"
+                        android:layout_height="60sp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/on"
+                        android:contentDescription="@string/inR"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="9dp"/>
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="@color/colorAccent"
+                    android:layout_margin="2dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        tools:ignore="RelativeOverlap">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/fiR"
+                            android:textSize="15sp"
+                            android:layout_marginTop="15sp"/>
+
+                        <TextView
+                            android:id="@+id/oftime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="100sp"
+                            android:layout_marginStart="100sp"
+                            android:gravity="center_vertical"
+                            android:textSize="20sp"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:text="0"/>
+
+                    </LinearLayout>
+
+                    <ImageButton
+                        android:id="@+id/oftimebtn"
+                        android:layout_width="60sp"
+                        android:layout_height="60sp"
+                        android:src="@drawable/off"
+                        android:scaleType="fitCenter"
+                        android:contentDescription="@string/fiR"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="9dp"/>
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="@color/colorAccent"
+                    android:layout_margin="2dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"/>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="invisible" />
+
+    </RelativeLayout>
+
+</FrameLayout>

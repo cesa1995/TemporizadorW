@@ -1,6 +1,5 @@
 package com.example.cesar.temporizadorw.tabs;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -14,7 +13,6 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,18 +24,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cesar.temporizadorw.R;
-import com.example.cesar.temporizadorw.comunication;
 import com.example.cesar.temporizadorw.conexion;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
-
-import static android.content.ContentValues.TAG;
 
 public class temperatura extends Fragment {
 
@@ -46,7 +37,6 @@ public class temperatura extends Fragment {
     ImageButton tempInicialBtn,tempFinalBtn,onTimeBtn,offTimeBtn;
     NumberPicker hora, minutos, segundos, temperatura;
     int relay, hh, ss, mm, bon, temp;
-    //comunication mCallback;
     ProgressBar cargando;
     ArrayList<HashMap<String, String>> relayListTemp;
     String ONe, OFFe, HINIe, HFINe, urlsave;
@@ -316,6 +306,7 @@ public class temperatura extends Fragment {
 
     public void guardar(int RR, String hhh, String mmm, String sss, String tempp){
         String ssid = getWifiName(getContext());
+        SharedPreferences.Editor editor = data.edit();
         if (ssid.contains("TEMP")) {
             String RRR = String.valueOf(RR);
             urlsave ="http://192.168.4.1/config?ssid=stiotca&pass=1234567";
@@ -324,27 +315,35 @@ public class temperatura extends Fragment {
                 switch (RR){
                     case 9:
                         relayListTemp.get(0).put("tempINI",tempp);
+                        editor.putString("tempINI0",tempp);
                         break;
                     case 10:
                         relayListTemp.get(0).put("tempFIN",tempp);
+                        editor.putString("tempFIN0",tempp);
                         break;
                     case 11:
                         relayListTemp.get(1).put("tempINI",tempp);
+                        editor.putString("tempINI1",tempp);
                         break;
                     case 12:
                         relayListTemp.get(1).put("tempFIN",tempp);
+                        editor.putString("tempFIN1",tempp);
                         break;
                     case 13:
                         relayListTemp.get(2).put("tempINI",tempp);
+                        editor.putString("tempINI2",tempp);
                         break;
                     case 14:
                         relayListTemp.get(2).put("tempFIN",tempp);
+                        editor.putString("tempFIN2",tempp);
                         break;
                     case 15:
                         relayListTemp.get(3).put("tempINI",tempp);
+                        editor.putString("tempINI3",tempp);
                         break;
                     case 16:
                         relayListTemp.get(3).put("tempFIN",tempp);
+                        editor.putString("tempFIN3",tempp);
                         break;
                 }
 
@@ -357,41 +356,65 @@ public class temperatura extends Fragment {
                         relayListTemp.get(0).put("tempONhh", hhh);
                         relayListTemp.get(0).put("tempONmm", mmm);
                         relayListTemp.get(0).put("tempONss", sss);
+                        editor.putString("tempONhh0",String.valueOf(hhh));
+                        editor.putString("tempONmm0",String.valueOf(mmm));
+                        editor.putString("tempONss0",String.valueOf(sss));
                         break;
                     case 26:
                         relayListTemp.get(0).put("tempOFFhh", hhh);
                         relayListTemp.get(0).put("tempOFFmm", mmm);
                         relayListTemp.get(0).put("tempOFFss", sss);
+                        editor.putString("tempOFFhh0",String.valueOf(hhh));
+                        editor.putString("tempOFFmm0",String.valueOf(mmm));
+                        editor.putString("tempOFFss0",String.valueOf(sss));
                         break;
                     case 27:
                         relayListTemp.get(1).put("tempONhh", hhh);
                         relayListTemp.get(1).put("tempONmm", mmm);
                         relayListTemp.get(1).put("tempONss", sss);
+                        editor.putString("tempONhh1",String.valueOf(hhh));
+                        editor.putString("tempONmm1",String.valueOf(mmm));
+                        editor.putString("tempONss1",String.valueOf(sss));
                         break;
                     case 28:
                         relayListTemp.get(1).put("tempOFFhh", hhh);
                         relayListTemp.get(1).put("tempOFFmm", mmm);
                         relayListTemp.get(1).put("tempOFFss", sss);
+                        editor.putString("tempOFFhh1",String.valueOf(hhh));
+                        editor.putString("tempOFFmm1",String.valueOf(mmm));
+                        editor.putString("tempOFFss1",String.valueOf(sss));
                         break;
                     case 29:
                         relayListTemp.get(2).put("tempONhh", hhh);
                         relayListTemp.get(2).put("tempONmm", mmm);
                         relayListTemp.get(2).put("tempONss", sss);
+                        editor.putString("tempONhh2",String.valueOf(hhh));
+                        editor.putString("tempONmm2",String.valueOf(mmm));
+                        editor.putString("tempONss2",String.valueOf(sss));
                         break;
                     case 30:
                         relayListTemp.get(2).put("tempOFFhh", hhh);
                         relayListTemp.get(2).put("tempOFFmm", mmm);
                         relayListTemp.get(2).put("tempOFFss", sss);
+                        editor.putString("tempOFFhh2",String.valueOf(hhh));
+                        editor.putString("tempOFFmm2",String.valueOf(mmm));
+                        editor.putString("tempOFFss2",String.valueOf(sss));
                         break;
                     case 31:
                         relayListTemp.get(3).put("tempONhh", hhh);
                         relayListTemp.get(3).put("tempONmm", mmm);
                         relayListTemp.get(3).put("tempONss", sss);
+                        editor.putString("tempONhh3",String.valueOf(hhh));
+                        editor.putString("tempONmm3",String.valueOf(mmm));
+                        editor.putString("tempONss3",String.valueOf(sss));
                         break;
                     case 32:
                         relayListTemp.get(3).put("tempOFFhh", hhh);
                         relayListTemp.get(3).put("tempOFFmm", mmm);
                         relayListTemp.get(3).put("tempOFFss", sss);
+                        editor.putString("tempOFFhh3",String.valueOf(hhh));
+                        editor.putString("tempOFFmm3",String.valueOf(mmm));
+                        editor.putString("tempOFFss3",String.valueOf(sss));
                         break;
                 }
 
@@ -399,6 +422,8 @@ public class temperatura extends Fragment {
                 System.out.println(urlsave);
             }
 
+            editor.apply();
+            editor.commit();
 
             new solicitarDatos().execute(urlsave);
 
@@ -437,14 +462,14 @@ public class temperatura extends Fragment {
                     }
                     // looping through All Times
                     for (int i = 0; i < 4; i++) {
-                        String tempONhh = data.getString("tempONhh"+i, "no Data");
-                        String tempONmm = data.getString("tempONmm"+i, "no Data");
-                        String tempONss = data.getString("tempONss"+i, "no Data");
-                        String tempOFFhh = data.getString("tempOFFhh"+i, "no Data");
-                        String tempOFFmm = data.getString("tempOFFmm"+i, "no Data");
-                        String tempOFFss = data.getString("tempOFFss"+i, "no Data");
-                        String tempINI = data.getString("tempINI"+i, "no Data");
-                        String tempFIN = data.getString("tempFIN"+i, "no Data");
+                        String tempONhh = data.getString("tempONhh"+i, "0");
+                        String tempONmm = data.getString("tempONmm"+i, "0");
+                        String tempONss = data.getString("tempONss"+i, "0");
+                        String tempOFFhh = data.getString("tempOFFhh"+i, "0");
+                        String tempOFFmm = data.getString("tempOFFmm"+i, "0");
+                        String tempOFFss = data.getString("tempOFFss"+i, "0");
+                        String tempINI = data.getString("tempINI"+i, "0");
+                        String tempFIN = data.getString("tempFIN"+i, "0");
 
                         // tmp hash map for single Times
                         HashMap<String, String> relay = new HashMap<>();

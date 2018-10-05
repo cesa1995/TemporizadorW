@@ -36,34 +36,19 @@ import static android.content.ContentValues.TAG;
 public class show extends AppCompatActivity{
 
     ToggleButton I,II,III,IV;
-
     TextView relayName;
-
     int  fragmentposition;
-
     LinearLayoutCompat relayes;
-
-    addData addData;
-
-    ProgressBar cargando;
-
     PagerAdapter adapter;
     TabLayout tabLayout;
     Log LOG_TAG;
-
     int relay2;
 
-    SharedPreferences datosDevice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show);
-
-        String ssid = getWifiName(getApplicationContext());
-        System.out.println("el ssid es "+ssid);
-        if(ssid.contains("TEMP")) {
-
             I = findViewById(R.id.I);
             II = findViewById(R.id.II);
             III = findViewById(R.id.III);
@@ -75,8 +60,6 @@ public class show extends AppCompatActivity{
             relayName = findViewById(R.id.relayName);
             fragmentposition = 0;
             relayes = findViewById(R.id.relayes);
-            cargando = findViewById(R.id.cargando);
-            datosDevice = getSharedPreferences("datosDevice", Context.MODE_PRIVATE);
 
             adapter = new PagerAdapter(getSupportFragmentManager());
             ViewPager viewPager = (ViewPager) findViewById(R.id.container);
@@ -87,7 +70,6 @@ public class show extends AppCompatActivity{
             viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
             tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));
 
-            new Gettimes().execute();
 
             viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                 @Override
@@ -173,37 +155,8 @@ public class show extends AppCompatActivity{
                 }
             });
 
-        }else{
-            Toast.makeText(getApplicationContext(),"Contese al dispositivo",Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
-            finish();
-        }
 
     }
-
-
-    public class Gettimes extends AsyncTask<Void, Void, Void> {
-
-        @Override
-        protected void onPreExecute() {
-            cargando.setVisibility(View.VISIBLE);
-
-
-        }
-
-        @Override
-        protected Void doInBackground(Void... arg0) {
-           addData.shareData(datosDevice,show.this);
-           return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            cargando.setVisibility(View.INVISIBLE);
-        }
-
-    }
-
 
     public void selec(ToggleButton relay){
         Log.i(String.valueOf(LOG_TAG), String.valueOf(fragmentposition));
@@ -271,21 +224,4 @@ public class show extends AppCompatActivity{
 
         }
     }
-
-    public String getWifiName(Context context) {
-        WifiManager manager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-        if (!manager.isWifiEnabled()) {
-            manager.setWifiEnabled(true);
-            finish();
-        }else{
-            WifiInfo wifiInfo = manager.getConnectionInfo();
-            if (wifiInfo != null) {
-                NetworkInfo.DetailedState state = WifiInfo.getDetailedStateOf(wifiInfo.getSupplicantState());
-                if (state == NetworkInfo.DetailedState.CONNECTED || state == NetworkInfo.DetailedState.OBTAINING_IPADDR) {
-                    return wifiInfo.getSSID();
-                }
-            }
-        }
-            return " ";
-        }
 }
