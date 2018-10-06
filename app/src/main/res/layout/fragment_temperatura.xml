@@ -10,6 +10,10 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingEnd="5dp"
+        android:paddingLeft="5dp"
+        android:paddingStart="5dp"
+        android:paddingRight="5dp"
         tools:ignore="UselessParent">
 
         <ScrollView
@@ -31,10 +35,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginEnd="72dp"
-                        android:layout_marginRight="72dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
                         android:text="@string/temperatura"
                         tools:ignore="RelativeOverlap"/>
 
@@ -43,11 +45,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorAccent"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="52dp"
-                        android:layout_marginEnd="52dp"
-                        android:textSize="18sp"/>
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        tools:ignore="RelativeOverlap" />
 
                     <Switch
                         android:id="@+id/temperaturaswi"
@@ -83,25 +84,25 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/temperaturaini"
-                            android:textSize="15sp"
+                            android:textSize="13sp"
                             android:layout_marginTop="15sp"/>
 
                         <TextView
                             android:id="@+id/tempinicial"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="100sp"
-                            android:layout_marginStart="100sp"
+                            android:layout_marginLeft="50sp"
+                            android:layout_marginStart="50sp"
                             android:gravity="center_vertical"
-                            android:textSize="20sp"
+                            android:textSize="17sp"
                             android:textColor="@color/colorPrimaryDark"/>
 
                     </LinearLayout>
 
                     <ImageButton
                         android:id="@+id/tempinicialbtn"
-                        android:layout_width="60sp"
-                        android:layout_height="60sp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:scaleType="fitCenter"
                         android:src="@drawable/temperaturaon"
                         android:contentDescription="@string/temperaturaini"
@@ -135,17 +136,17 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/temperaturafin"
-                            android:textSize="15sp"
+                            android:textSize="13sp"
                             android:layout_marginTop="15sp"/>
 
                         <TextView
                             android:id="@+id/tempfinal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="100sp"
-                            android:layout_marginStart="100sp"
+                            android:layout_marginLeft="50sp"
+                            android:layout_marginStart="50sp"
                             android:gravity="center_vertical"
-                            android:textSize="20sp"
+                            android:textSize="17sp"
                             android:textColor="@color/colorPrimaryDark"/>
 
 
@@ -154,7 +155,7 @@
                     <ImageButton
                         android:id="@+id/tempfinalbtn"
                         android:layout_width="60dp"
-                        android:layout_height="60sp"
+                        android:layout_height="60dp"
                         android:scaleType="fitCenter"
                         android:adjustViewBounds="true"
                         android:src="@drawable/temperaturaoff"
@@ -189,25 +190,25 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/inR"
-                            android:textSize="15sp"
+                            android:textSize="13sp"
                             android:layout_marginTop="15sp"/>
 
                         <TextView
                             android:id="@+id/tempontime"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="100sp"
-                            android:layout_marginStart="100sp"
+                            android:layout_marginLeft="50sp"
+                            android:layout_marginStart="50sp"
                             android:gravity="center_vertical"
-                            android:textSize="20sp"
+                            android:textSize="17sp"
                             android:textColor="@color/colorPrimaryDark"/>
 
                     </LinearLayout>
 
                     <ImageButton
                         android:id="@+id/ontimebtn"
-                        android:layout_width="60sp"
-                        android:layout_height="60sp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:scaleType="fitCenter"
                         android:src="@drawable/on"
                         android:contentDescription="@string/inR"
@@ -241,25 +242,25 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/fiR"
-                            android:textSize="15sp"
+                            android:textSize="13sp"
                             android:layout_marginTop="15sp"/>
 
                         <TextView
                             android:id="@+id/tempoftime"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="100sp"
-                            android:layout_marginStart="100sp"
+                            android:layout_marginLeft="50sp"
+                            android:layout_marginStart="50sp"
                             android:gravity="center_vertical"
-                            android:textSize="20sp"
+                            android:textSize="17sp"
                             android:textColor="@color/colorPrimaryDark"/>
 
                     </LinearLayout>
 
                     <ImageButton
                         android:id="@+id/oftimebtn"
-                        android:layout_width="60sp"
-                        android:layout_height="60sp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:src="@drawable/off"
                         android:scaleType="fitCenter"
                         android:contentDescription="@string/fiR"

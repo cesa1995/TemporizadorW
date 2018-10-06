@@ -10,7 +10,11 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:ignore="UselessParent">
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        tools:ignore="UselessParent"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -31,10 +35,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginEnd="72dp"
-                        android:layout_marginRight="72dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
                         android:text="@string/humedad"
                         tools:ignore="RelativeOverlap" />
 
@@ -43,11 +45,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorAccent"
-                        android:text="0"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="52dp"
-                        android:layout_marginEnd="52dp"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
                         android:textSize="18sp"/>
 
                     <Switch
@@ -81,26 +80,25 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/humedadini"
-                            android:textSize="15sp"
+                            android:textSize="13sp"
                             android:layout_marginTop="15sp"/>
 
                         <TextView
                             android:id="@+id/huminicial"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="100sp"
-                            android:layout_marginStart="100sp"
+                            android:layout_marginLeft="50sp"
+                            android:layout_marginStart="50sp"
                             android:gravity="center_vertical"
-                            android:textSize="20sp"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:text="0"/>
+                            android:textSize="17sp"
+                            android:textColor="@color/colorPrimaryDark" />
 
                     </LinearLayout>
 
                     <ImageButton
                         android:id="@+id/huminicialbtn"
-                        android:layout_width="60sp"
-                        android:layout_height="60sp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:scaleType="fitCenter"
                         android:src="@drawable/humedadini"
                         android:contentDescription="@string/humedadini"
@@ -134,17 +132,16 @@
                             android:layout_height="wrap_content"
                             android:text="@string/humedadfin"
                             android:layout_marginTop="15sp"
-                            android:textSize="15sp"/>
+                            android:textSize="13sp"/>
 
                         <TextView
                             android:id="@+id/humfinal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="100sp"
-                            android:layout_marginStart="100sp"
+                            android:layout_marginLeft="50sp"
+                            android:layout_marginStart="50sp"
                             android:gravity="center_vertical"
-                            android:text="0"
-                            android:textSize="20sp"
+                            android:textSize="17sp"
                             android:textColor="@color/colorPrimaryDark"/>
 
                     </LinearLayout>
@@ -152,7 +149,7 @@
                     <ImageButton
                         android:id="@+id/humfinalbtn"
                         android:layout_width="60dp"
-                        android:layout_height="60sp"
+                        android:layout_height="60dp"
                         android:scaleType="fitCenter"
                         android:adjustViewBounds="true"
                         android:src="@drawable/humedadfin"
@@ -188,26 +185,25 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/inR"
-                            android:textSize="15sp"
+                            android:textSize="13sp"
                             android:layout_marginTop="15sp"/>
 
                         <TextView
                             android:id="@+id/ontime"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="100sp"
-                            android:layout_marginStart="100sp"
+                            android:layout_marginLeft="50sp"
+                            android:layout_marginStart="50sp"
                             android:gravity="center_vertical"
-                            android:textSize="20sp"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:text="0"/>
+                            android:textSize="17sp"
+                            android:textColor="@color/colorPrimaryDark" />
 
                     </LinearLayout>
 
                     <ImageButton
                         android:id="@+id/ontimebtn"
-                        android:layout_width="60sp"
-                        android:layout_height="60sp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:scaleType="fitCenter"
                         android:src="@drawable/on"
                         android:contentDescription="@string/inR"
@@ -241,26 +237,25 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/fiR"
-                            android:textSize="15sp"
+                            android:textSize="13sp"
                             android:layout_marginTop="15sp"/>
 
                         <TextView
                             android:id="@+id/oftime"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="100sp"
-                            android:layout_marginStart="100sp"
+                            android:layout_marginLeft="50sp"
+                            android:layout_marginStart="50sp"
                             android:gravity="center_vertical"
-                            android:textSize="20sp"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:text="0"/>
+                            android:textSize="17sp"
+                            android:textColor="@color/colorPrimaryDark" />
 
                     </LinearLayout>
 
                     <ImageButton
                         android:id="@+id/oftimebtn"
-                        android:layout_width="60sp"
-                        android:layout_height="60sp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:src="@drawable/off"
                         android:scaleType="fitCenter"
                         android:contentDescription="@string/fiR"

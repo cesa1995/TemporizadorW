@@ -18,7 +18,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/configtimetem"
                 android:gravity="center"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:layout_marginTop="10dp"/>
 
             <LinearLayout
@@ -35,7 +35,6 @@
                     android:ems="10"
                     android:hint="@string/formato_fecha"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView"
                     android:layout_marginLeft="32dp" />
 
                 <ImageButton
@@ -49,7 +48,6 @@
                     android:layout_marginLeft="8dp"
                     app:layout_constraintHorizontal_bias="0.505"
                     android:layout_marginTop="15dp"
-                    app:layout_constraintTop_toBottomOf="@+id/textView"
                     tools:ignore="ContentDescription" />
 
             </LinearLayout>

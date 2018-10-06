@@ -29,40 +29,40 @@
 
                 <ToggleButton
                     android:id="@+id/I"
-                    android:layout_width="50sp"
-                    android:layout_height="50sp"
-                    android:layout_marginLeft="5sp"
-                    android:layout_marginRight="5sp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:background="@drawable/togglerelay"
                     android:textOff="@string/none"
                     android:textOn="@string/none" />
 
                 <ToggleButton
                     android:id="@+id/II"
-                    android:layout_width="50sp"
-                    android:layout_height="50sp"
-                    android:layout_marginLeft="5sp"
-                    android:layout_marginRight="5sp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:background="@drawable/togglerelay"
                     android:textOff="@string/none"
                     android:textOn="@string/none" />
 
                 <ToggleButton
                     android:id="@+id/III"
-                    android:layout_width="50sp"
-                    android:layout_height="50sp"
-                    android:layout_marginLeft="5sp"
-                    android:layout_marginRight="5sp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:background="@drawable/togglerelay"
                     android:textOff="@string/none"
                     android:textOn="@string/none" />
 
                 <ToggleButton
                     android:id="@+id/IV"
-                    android:layout_width="50sp"
-                    android:layout_height="50sp"
-                    android:layout_marginLeft="5sp"
-                    android:layout_marginRight="5sp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:background="@drawable/togglerelay"
                     android:textOff="@string/none"
                     android:textOn="@string/none" />
@@ -76,7 +76,7 @@
                 android:background="@color/colorAccent"
                 android:textAlignment="center"
                 android:textColor="@color/textTittle"
-                android:textSize="20sp" />
+                android:textSize="20dp" />
 
         </android.support.v7.widget.LinearLayoutCompat>
 
